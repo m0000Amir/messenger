@@ -12,6 +12,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "parcel ./index.hbs --no-cache",
+    "build": "parcel build ./index.hbs --no-cache",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
