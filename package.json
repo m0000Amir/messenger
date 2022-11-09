@@ -2,18 +2,23 @@
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "^1.0.9",
     "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "@parcel/transformer-less": "^2.7.0",
+    "less": "^4.1.3",
     "parcel": "^2.7.0"
   },
   "dependencies": {
+    "express": "^4.18.2",
     "handlebars": "^4.7.7"
   },
   "name": "middle.messenger.praktikum.yandex",
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "version": "1.0.0",
   "scripts": {
-    "dev": "parcel ./index.hbs --no-cache",
-    "build": "parcel build ./index.hbs --no-cache",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "parcel index.hbs --port 3000 --no-cache",
+    "build": "parcel build index.hbs --no-cache --public-url ./",
+    "start": "parcel build index.hbs --public-url ./ && node ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clear": "rm -rf ./dist"
   },
   "repository": {
     "type": "git",
