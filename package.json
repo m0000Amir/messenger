@@ -14,9 +14,9 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "version": "1.0.0",
   "scripts": {
-    "dev": "parcel index.hbs --port 3000 --no-cache",
-    "build": "parcel build index.hbs --no-cache --public-url ./",
-    "start": "parcel build index.hbs --public-url ./ && node ./server.js",
+    "dev": "parcel src/index.hbs --port 3000 --no-cache",
+    "build": "parcel build src/index.hbs --no-cache",
+    "start": "npm run build && node ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clear": "rm -rf ./dist"
   },

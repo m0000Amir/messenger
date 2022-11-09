@@ -1,11 +1,13 @@
-/* inter-regular - latin */
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  src: local(''),
-  url('../fonts/inter-v12-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
-  url('../fonts/inter-v12-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+@import "../styles/variables";
+@import "../styles/link";
+@import "../styles/input";
+
+.login-page__wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .login {
@@ -15,36 +17,19 @@
   align-items: center;
   width: 280px;
   height: 370px;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
   border-radius: 12px;
   padding: 50px 30px 30px;
   margin: 0 auto;
 
-  //position: absolute;
-  //width: 340px;
-  //height: 450px;
-  //left: 470px;
-  //top: 135px;
-  //
-  //
-  //background: #FFFFFF;
-  //box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
-  //border-radius: 12px;
   &__title {
-    //position: fixed;
-    //width: 50px;
-    //height: 20px;
-    //left: 615px;
-    //top: 185px;
-
-    font-family: "Inter", serif;
+    font-family: @inter-font;
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 20px;
-    /* identical to box height, or 100% */
     text-align: center;
-    color: #1E1E1E;
+    color: @black-color;
   }
   &__wrapper {
     margin: 0 auto;
@@ -52,138 +37,4 @@
   }
 }
 
-.login-form {
-  //position: fixed;
-  //width: 27px;
-  //height: 9px;
-  //left: 500px;
-  //top: 245px;
 
-  &__title {
-    font-family: 'Inter', serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 9px;
-    line-height: 9px;
-    /* identical to box height, or 100% */
-    color: #999999;
-  }
-  &__input {
-    height: 23px;
-    left: 500px;
-
-    width: 280px;
-    top: 282px;
-    border:  0px solid #3369F3;
-    border-bottom: 1px solid #3369F3;
-
-    font-size: 13px;
-    line-height: 13px;
-
-    &::placeholder {
-      font-family: 'Inter', serif;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 13px;
-      line-height: 13px;
-
-      color: #1E1E1E;
-    }
-  }
-}
-
-.password-form {
-  //position: fixed;
-  //width: 27px;
-  //height: 13px;
-  //left: 500px;
-  //top: 334px;
-
-  &__title {
-    font-family: 'Inter', serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 9px;
-    line-height: 9px;
-    /* identical to box height, or 100% */
-    color: #999999;
-  }
-  &__input {
-    height: 23px;
-    left: 500px;
-
-    width: 280px;
-    top: 282px;
-    border:  0px solid #3369F3;
-    border-bottom: 1px solid #3369F3;
-
-    font-size: 13px;
-    line-height: 13px;
-
-    &::placeholder {
-      font-family: 'Inter', serif;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 13px;
-      line-height: 13px;
-
-      color: #1E1E1E;
-    }
-  }
-}
-
-.sign-in-button {
-  //display: flex;
-  //flex-direction: column;
-  //flex-wrap: wrap;
-  //align-items: center;
-
-  //position: fixed;
-  width: 280px;
-  height: 37px;
-  //left: 00px;
-  //top: 493px;
-  margin-top: 114px;
-
-  background: #3369F3;
-  border-radius: 8px;
-  border-style: none;
-
-  font-family: 'Inter', serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 13px;
-  /* identical to box height, or 100% */
-
-  text-align: center;
-
-  color: #FFFFFF;
-}
-
-.sign-up-link {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-items: center;
-
-  margin: 14px 0 0;
-  width: 280px;
-  //height: 11px;
-  //left: 601px;
-  //top: 544px;
-
-  text-align: center;
-
-
-  font-family: 'Inter', serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 11px;
-  /* identical to box height, or 100% */
-  text-align: center;
-  cursor: pointer;
-  color: #3369F3;
-  text-decoration: none;
-}
