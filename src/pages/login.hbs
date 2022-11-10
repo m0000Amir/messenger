@@ -18,6 +18,7 @@ title: "Login"
             {{>input-form
                     title="input-form"
                     span-class="input-form__title"
+                    label="Login"
                     input-class="input-form__input"
                     input-type="text"
                     input-name="login"
@@ -27,15 +28,17 @@ title: "Login"
             {{>input-form
                     title="input-form"
                     span-class="input-form__title"
+                    label="Password"
                     input-class="input-form__input"
                     input-type="password"
                     input-name="password"
                     input-placeholder="••••••••••••"
             }}
 
-            {{>button-link href="./chat.hbs" label="Sign in" class="button-link"}}
-            {{>text-link class="text-link" href="./registration.hbs" label="Sign Up"}}
-
+            <div class="login__link">
+                {{>button-link href="./chat.hbs" label="Sign in" class="button-link"}}
+                {{>text-link class="text-link" href="./registration.hbs" label="Sign Up"}}
+            </div>
         </div>
     </div>
 </section>
