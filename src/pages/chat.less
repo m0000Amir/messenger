@@ -11,21 +11,16 @@
   height: 100vh;
   display: flex;
   flex-direction: row;
-  //justify-content: center;
-  //align-items: center;
   font-family: @inter-font;
   font-style: normal;
 }
 
 .chat-page__dialogues {
-  //width: 100vh;
   display: flex;
-  //flex: 1;
   order: 1;
   border: 1px solid silver;
   flex-direction: column;
   background-color: #FBFBFB;
-
   width: 20%;
 
   &_right_text {
@@ -65,7 +60,6 @@
   &_messages {
     border-top: 1px solid #EAEAEA;
     border-bottom: 1px solid #EAEAEA;
-    //height: 63px
     display: flex;
     flex-direction: row;
 
@@ -100,7 +94,6 @@
 }
 
 .chat-page__message {
-  //height: 100%;
   flex: 2;
   order: 2;
   border: 1px solid silver;
@@ -158,42 +151,26 @@
       background-color: @background-color;
       align-self: flex-start;
       text-align: left;
-      //flex: 1
     }
 
   }
 
   &_out {
     flex-direction: row;
-    //justify-content: flex-end;
 
     &-message {
       padding: 10px 10px 10px 10px;
-      //width: 40%;
       border-radius: 9px;
       background-color: #E4EDFD;
       align-self: flex-end;
-      //text-align: left;
-      //flex: 2
     }
   }
 
   &-input-wrapper {
-    //margin: 5px;
     display: flex;
-    //height: 50px;
-    //flex-direction: row;
-    //width:100%;
     align-items: center;
     flex: 1;
     margin: 5px;
-    //bottom: 5px;
-
-    //align-self: flex-end;
-
-    //align-content: stretch;
-
-
   }
   &-input {
     width: 849px;
