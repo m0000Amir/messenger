@@ -10,78 +10,79 @@ profileImg: "../static/image/profile.svg"
     <title>{{title}}</title>
 </head>
 <body>
-<section class="profile-page__wrapper">
-    <div class="profile">
-        <img class="profile__img" src="{{ profileImg }}">
-        <div class="profile__wrapper">
+    <main id="profile">
+        <section class="profile-page__wrapper">
+            <div class="profile">
+                <img class="profile__img" src="{{ profileImg }}">
+                <div class="profile__wrapper">
 
-            {{>input-form
-                    class="profile-input-form"
-                    span-class="profile-input-form__title"
-                    label="Email"
-                    input-class="profile-input-form__input"
-                    input-type="email"
-                    input-name="email"
-                    input-placeholder="pochta@yandex.ru"
-            }}
+                    {{>input-form
+                            class="profile-input-form"
+                            span-class="profile-input-form__title"
+                            label="Email"
+                            input-class="profile-input-form__input"
+                            input-type="email"
+                            input-name="email"
+                            input-placeholder="pochta@yandex.ru"
+                    }}
 
-            {{>input-form
-                    class="profile-input-form"
-                    span-class="profile-input-form__title"
-                    label="Login"
-                    input-class="profile-input-form__input"
-                    input-type="text"
-                    input-name="login"
-                    input-placeholder="AMukhtarov"
-            }}
+                    {{>input-form
+                            class="profile-input-form"
+                            span-class="profile-input-form__title"
+                            label="Login"
+                            input-class="profile-input-form__input"
+                            input-type="text"
+                            input-name="login"
+                            input-placeholder="AMukhtarov"
+                    }}
 
-            {{>input-form
-                    class="profile-input-form"
-                    span-class="profile-input-form__title"
-                    label="First name"
-                    input-class="profile-input-form__input"
-                    input-type="text"
-                    input-name="first_name"
-                    input-placeholder="Amir"
-            }}
+                    {{>input-form
+                            class="profile-input-form"
+                            span-class="profile-input-form__title"
+                            label="First name"
+                            input-class="profile-input-form__input"
+                            input-type="text"
+                            input-name="first_name"
+                            input-placeholder="Amir"
+                    }}
 
-            {{>input-form
-                    class="profile-input-form"
-                    span-class="profile-input-form__title"
-                    label="Second name"
-                    input-class="profile-input-form__input"
-                    input-type="text"
-                    input-name="second_name"
-                    input-placeholder="Mukhtarov"
-            }}
+                    {{>input-form
+                            class="profile-input-form"
+                            span-class="profile-input-form__title"
+                            label="Second name"
+                            input-class="profile-input-form__input"
+                            input-type="text"
+                            input-name="second_name"
+                            input-placeholder="Mukhtarov"
+                    }}
 
-            {{>input-form
-                    class="profile-input-form"
-                    span-class="profile-input-form__title"
-                    label="Username"
-                    input-class="profile-input-form__input"
-                    input-type="text"
-                    input-name="Username"
-                    input-placeholder="Amir"
-            }}
+                    {{>input-form
+                            class="profile-input-form"
+                            span-class="profile-input-form__title"
+                            label="Username"
+                            input-class="profile-input-form__input"
+                            input-type="text"
+                            input-name="Username"
+                            input-placeholder="Amir"
+                    }}
 
-            {{>input-form
-                    class="profile-input-form"
-                    span-class="profile-input-form__title"
-                    label="Phone"
-                    input-class="profile-input-form__input"
-                    input-type="tel"
-                    input-name="phone"
-                    input-placeholder="+7 (999) 123 45 67"
-            }}
+                    {{>input-form
+                            class="profile-input-form"
+                            span-class="profile-input-form__title"
+                            label="Phone"
+                            input-class="profile-input-form__input"
+                            input-type="tel"
+                            input-name="phone"
+                            input-placeholder="+7 (999) 123 45 67"
+                    }}
 
-            <div class="profile-button">
-                {{>button-link  class="button-link" href="./chat.hbs" label="Save"}}
+                    <div class="profile-button">
+                        {{>button-link  class="button-link" href="./chat.hbs" label="Save"}}
+                    </div>
+
+                </div>
             </div>
-
-
-        </div>
-    </div>
-</section>
+        </section>
+    </main>
 </body>
 </html>

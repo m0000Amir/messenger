@@ -10,12 +10,14 @@ title: "500"
     <title>{{title}}</title>
 </head>
 <body>
-<section class="error-page__wrapper">
-    <h1 class="title">{{title}}</h1>
-    <span class="message">We have been fixing</span>
+    <main id="500">
+        <section class="error-page__wrapper">
+            <h1 class="title">{{title}}</h1>
+            <span class="message">We have been fixing</span>
 
-    {{>text-link class="text-link" href="./chat.hbs" label="Back to chats"}}
+            {{>text-link class="text-link" href="./chat.hbs" label="Back to chats"}}
 
-</section>
+        </section>
+    </main>
 </body>
 </html>

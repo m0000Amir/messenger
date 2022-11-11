@@ -24,54 +24,54 @@ messageOut: [{text: "Cool!", time: "13-38"},]
     <link rel="stylesheet"  href="./chat.less" />
 </head>
 <body>
-    <div class="chat-page__wrapper">
-        <div class="chat-page__dialogues">
+    <main id="chat">
+        <div class="chat-page__wrapper">
+            <div class="chat-page__dialogues">
 
-            <a class="chat-page__dialogues__link"  href="./profile.hbs">Profile ></a>
+                <a class="chat-page__dialogues__link"  href="./profile.hbs">Profile ></a>
 
-            <input class="chat-page__dialogues_search" type="text" name="search" placeholder="Search"/>
+                <input class="chat-page__dialogues_search" type="text" name="search" placeholder="Search"/>
 
-            {{#each dialogues }}
-                {{>dialogue name=this.name lastMessage=this.lastMessage time=this.time}}
-            {{/each}}
-        </div>
-
-        <div class="chat-page__message">
-            <div class="chat-page__message-user">
-                <div class="chat-page__message_avatar"></div>
-                <div class="chat-page__message-name">
-                    {{ messageUser }}
-                </div>
-            </div>
-
-            <div class="chat-page__message_history">
-                <div class="chat-page__message_history-time">19 june</div>
-
-                {{#each messageIn}}
-                    <div class="chat-page__message_in-message">
-                        {{ this.text }}
-                        <div class="chat-page__message-time">{{ this.time}}</div>
-                    </div>
-                {{/each }}
-
-                <div class="chat-page__message_history-time">19 june</div>
-
-                {{#each messageOut}}
-                    <div class="chat-page__message_out-message">
-                        {{ this.text }}
-                        <div class="chat-page__message-time">{{ this.time }}</div>
-                    </div>
+                {{#each dialogues }}
+                    {{>dialogue name=this.name lastMessage=this.lastMessage time=this.time}}
                 {{/each}}
             </div>
 
-            <div class="chat-page__message-input-wrapper">
-                <a href="#"><img class="chat-page__message-img" src="../static/image/clip.svg"></a>
-                <input class="chat-page__message-input" type="text" name="message" placeholder="Message"/>
-                <button class="chat-page__message-button">&#x203A;</button>
+            <div class="chat-page__message">
+                <div class="chat-page__message-user">
+                    <div class="chat-page__message_avatar"></div>
+                    <div class="chat-page__message-name">
+                        {{ messageUser }}
+                    </div>
+                </div>
+
+                <div class="chat-page__message_history">
+                    <div class="chat-page__message_history-time">19 june</div>
+
+                    {{#each messageIn}}
+                        <div class="chat-page__message_in-message">
+                            {{ this.text }}
+                            <div class="chat-page__message-time">{{ this.time}}</div>
+                        </div>
+                    {{/each }}
+
+                    <div class="chat-page__message_history-time">19 june</div>
+
+                    {{#each messageOut}}
+                        <div class="chat-page__message_out-message">
+                            {{ this.text }}
+                            <div class="chat-page__message-time">{{ this.time }}</div>
+                        </div>
+                    {{/each}}
+                </div>
+
+                <div class="chat-page__message-input-wrapper">
+                    <a href="#"><img class="chat-page__message-img" src="../static/image/clip.svg"></a>
+                    <input class="chat-page__message-input" type="text" name="message" placeholder="Message"/>
+                    <button class="chat-page__message-button">&#x203A;</button>
+                </div>
             </div>
         </div>
-
-
-    </div>
+    </main>
 </body>
 </html>

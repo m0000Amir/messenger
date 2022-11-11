@@ -10,37 +10,39 @@ title: "Login"
     <title>{{title}}</title>
 </head>
 <body>
-<section class="login-page__wrapper">
-    <div class="login">
-        <h2 class="login__title">{{title}}</h2>
-        <div class="login__wrapper">
+    <main id="login">
+        <section class="login-page__wrapper">
+            <div class="login">
+                <h2 class="login__title">{{title}}</h2>
+                <div class="login__wrapper">
 
-            {{>input-form
-                    title="input-form"
-                    span-class="input-form__title"
-                    label="Login"
-                    input-class="input-form__input"
-                    input-type="text"
-                    input-name="login"
-                    input-placeholder="AMukhtarov"
-            }}
+                    {{>input-form
+                            title="input-form"
+                            span-class="input-form__title"
+                            label="Login"
+                            input-class="input-form__input"
+                            input-type="text"
+                            input-name="login"
+                            input-placeholder="AMukhtarov"
+                    }}
 
-            {{>input-form
-                    title="input-form"
-                    span-class="input-form__title"
-                    label="Password"
-                    input-class="input-form__input"
-                    input-type="password"
-                    input-name="password"
-                    input-placeholder="••••••••••••"
-            }}
+                    {{>input-form
+                            title="input-form"
+                            span-class="input-form__title"
+                            label="Password"
+                            input-class="input-form__input"
+                            input-type="password"
+                            input-name="password"
+                            input-placeholder="••••••••••••"
+                    }}
 
-            <div class="login__link">
-                {{>button-link href="./chat.hbs" label="Sign in" class="button-link"}}
-                {{>text-link class="text-link" href="./registration.hbs" label="Sign Up"}}
+                    <div class="login__link">
+                        {{>button-link href="./chat.hbs" label="Sign in" class="button-link"}}
+                        {{>text-link class="text-link" href="./registration.hbs" label="Sign Up"}}
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
+    </main>
 </body>
 </html>
