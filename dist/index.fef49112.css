@@ -1,0 +1,17 @@
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("inter-v12-latin-regular.941b183c.woff2") format("woff2"), url("inter-v12-latin-regular.6114f4dd.woff") format("woff");
+}
+
+.ref {
+  padding: 30px 0;
+}
+
+.row {
+  margin-bottom: 16px;
+  display: flex;
+}
+
+/*# sourceMappingURL=index.fef49112.css.map */

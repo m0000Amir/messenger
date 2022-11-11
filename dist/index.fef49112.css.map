@@ -1,0 +1,1 @@
+{"mappings":"ACSA;;;;;;;ADLA;;;;AAIA","sources":["src/index.less","src/styles/variables.less"],"sourcesContent":["\n@import 'styles/variables';\n\n\n.ref {\n  padding: 30px 0;\n}\n\n.row {\n  display: flex;\n  margin-bottom: 16px;\n}\n",null],"names":[],"version":3,"file":"index.fef49112.css.map","sourceRoot":"/__parcel_source_root/"}
