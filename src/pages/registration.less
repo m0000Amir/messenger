@@ -1,0 +1,44 @@
+@import "../styles/variables";
+@import "../styles/link";
+@import "../styles/input";
+
+.registration-page__wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 340px;
+  height: 615px;
+  left: 470px;
+  top: 135px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+  border-radius: 12px;
+  padding: 50px 30px 30px;
+  margin: 0 auto;
+
+  &__title {
+    font-family: @inter-font;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: @black-color;
+  }
+  &__wrapper {
+    margin: 0 auto;
+    width: 280px;
+  }
+  &__link {
+    margin-top: 150px;
+  }
+}
+
+

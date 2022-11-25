@@ -1,0 +1,99 @@
+---
+title: "Registration"
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  href="./registration.less" />
+    <title>{{title}}</title>
+</head>
+<body>
+<section class="registration-page__wrapper">
+    <div class="registration">
+        <h2 class="registration__title">{{title}}</h2>
+        <div class="registration__wrapper">
+
+            {{>input-form
+                    class="input-form"
+                    span-class="input-form__title"
+                    label="Email"
+                    input-class="input-form__input"
+                    input-type="email"
+                    input-name="email"
+                    input-placeholder="pochta@yandex.ru"
+            }}
+
+
+            {{>input-form
+                    class="input-form"
+                    span-class="input-form__title"
+                    label="Login"
+                    input-class="input-form__input"
+                    input-type="text"
+                    input-name="login"
+                    input-placeholder="AMukhtarov"
+            }}
+
+            {{>input-form
+                    class="input-form"
+                    span-class="input-form__title"
+                    label="First name"
+                    input-class="input-form__input"
+                    input-type="text"
+                    input-name="first_name"
+                    input-placeholder="Amir"
+            }}
+
+            {{>input-form
+                    class="input-form"
+                    span-class="input-form__title"
+                    label="Second name"
+                    input-class="input-form__input"
+                    input-type="text"
+                    input-name="second_name"
+                    input-placeholder="Mukhtarov"
+            }}
+
+            {{>input-form
+                    class="input-form"
+                    span-class="input-form__title"
+                    label="Phone"
+                    input-class="input-form__input"
+                    input-type="tel"
+                    input-name="phone"
+                    input-placeholder="+7 (999) 123 45 67"
+            }}
+
+            {{>input-form
+                    class="input-form"
+                    span-class="input-form__title"
+                    label="Password"
+                    input-class="input-form__input"
+                    input-type="password"
+                    input-name="password"
+                    input-placeholder="••••••••••••"
+            }}
+
+            {{>input-form
+                    class="input-form"
+                    span-class="input-form__title"
+                    label="Confirm password"
+                    input-class="input-form__input"
+                    input-type="password"
+                    input-name="password"
+                    input-placeholder="••••••••••••"
+            }}
+
+            <div class="registration__link">
+                {{>button-link  class="button-link" href="./chat.hbs" label="Sign up"}}
+                {{>text-link class="text-link" href="./login.hbs" label="Sign in"}}
+            </div>
+
+
+        </div>
+    </div>
+</section>
+</body>
+</html>
