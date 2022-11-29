@@ -5,6 +5,7 @@ import template from './registration.hbs';
 import './registration.less';
 import Link from '../../components/Link';
 import Form from '../../components/Form';
+import { focusin, focusout, submit } from '../../utils/events';
 
 export class RegistrationPage extends Block {
   constructor() {
@@ -23,6 +24,10 @@ export class RegistrationPage extends Block {
           inputType: 'email',
           inputName: 'email',
           inputPlaceholder: 'pochta@yandex.ru',
+          events: {
+            focusin,
+            focusout,
+          },
         }),
         new Input({
           class: 'input-form',
@@ -32,6 +37,10 @@ export class RegistrationPage extends Block {
           inputType: 'text',
           inputName: 'login',
           inputPlaceholder: 'AMukhtarov',
+          events: {
+            focusin,
+            focusout,
+          },
         }),
         new Input({
           class: 'input-form',
@@ -41,6 +50,10 @@ export class RegistrationPage extends Block {
           inputType: 'text',
           inputName: 'first_name',
           inputPlaceholder: 'Amir',
+          events: {
+            focusin,
+            focusout,
+          },
         }),
         new Input({
           class: 'input-form',
@@ -50,6 +63,10 @@ export class RegistrationPage extends Block {
           inputType: 'text',
           inputName: 'second_name',
           inputPlaceholder: 'Mukhtarov',
+          events: {
+            focusin,
+            focusout,
+          },
         }),
         new Input({
           class: 'input-form',
@@ -59,6 +76,10 @@ export class RegistrationPage extends Block {
           inputType: 'tel',
           inputName: 'phone',
           inputPlaceholder: '+7 (999) 123 45 67',
+          events: {
+            focusin,
+            focusout,
+          },
         }),
         new Input({
           class: 'input-form',
@@ -77,13 +98,21 @@ export class RegistrationPage extends Block {
           inputType: 'password',
           inputName: 'password',
           inputPlaceholder: '••••••••••••',
+          events: {
+            focusin,
+            focusout,
+          },
         }),
       ],
+      buttonClass: 'registration__link',
+      button: new Button({
+        label: 'Sign Up',
+        class: 'button-link',
+        type: 'submit',
+      }),
+      events: { submit },
     });
-    this.children.button = new Button({
-      label: 'Sign Up',
-      class: 'button-link',
-    });
+
     this.children.link = new Link({
       class: 'text-link',
       href: './login.hbs',

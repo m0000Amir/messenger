@@ -10,7 +10,7 @@ interface InputFormProps {
   inputType: string
   inputName: string
   inputPlaceholder: string
-
+  events?: { focusin: (e: Event) => void; focusout: (e: Event) => void };
 }
 
 export class Input extends Block {

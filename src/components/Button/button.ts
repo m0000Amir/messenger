@@ -5,8 +5,9 @@ import './button.less';
 interface ButtonProps {
   label: string
   class: string
+  type?: string
   events?: {
-    click: () => void
+    click: (e: Event) => void
   }
 }
 

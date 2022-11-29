@@ -5,6 +5,7 @@ import './login.less';
 import Input from '../../components/Input';
 import Link from '../../components/Link';
 import Form from '../../components/Form';
+import { focusin, focusout, submit } from '../../utils/events';
 
 export class LoginPage extends Block {
   constructor() {
@@ -23,6 +24,10 @@ export class LoginPage extends Block {
           inputType: 'text',
           inputName: 'login',
           inputPlaceholder: 'AMukhtarov',
+          events: {
+            focusin,
+            focusout,
+          },
         }),
         new Input({
           class: 'input-form',
@@ -32,12 +37,19 @@ export class LoginPage extends Block {
           inputType: 'password',
           inputName: 'password',
           inputPlaceholder: '••••••••••••',
+          events: {
+            focusin,
+            focusout,
+          },
         }),
       ],
-    });
-    this.children.button = new Button({
-      label: 'Sign in',
-      class: 'button-link',
+      buttonClass: 'login__link',
+      button: new Button({
+        label: 'Sign in',
+        class: 'button-link',
+        type: 'submit',
+      }),
+      events: { submit },
     });
     this.children.link = new Link({
       class: 'text-link',
@@ -47,6 +59,7 @@ export class LoginPage extends Block {
   }
 
   render() {
+    // debugger;
     return this.compile(template, { ...this.props });
   }
 }

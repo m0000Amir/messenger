@@ -5,6 +5,11 @@ import './form.less';
 interface FormProps {
   formClass: string
   inputs: Block[]
+  buttonClass: string
+  button: Block
+  events?: {
+    submit: (e: SubmitEvent) => void;
+  }
 }
 
 export class Form extends Block {
