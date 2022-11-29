@@ -3,10 +3,21 @@
     "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "@parcel/transformer-less": "2.8.0",
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "@typescript-eslint/parser": "^5.44.0",
+    "eslint": "^8.28.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.5.1",
+    "eslint-plugin-promise": "^6.1.1",
     "handlebars": "4.7.7",
     "less": "4.1.3",
+    "nanoid": "4.0.0",
     "parcel": "2.8.0",
-    "rimraf": "3.0.2"
+    "rimraf": "3.0.2",
+    "stylelint": "^14.15.0",
+    "typescript": "^4.9.3"
   },
   "dependencies": {
     "express": "^4.18.2"
@@ -15,8 +26,8 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "version": "1.0.0",
   "scripts": {
-    "dev": "parcel src/index.hbs --port 3000 --no-cache",
-    "build": "parcel build src/index.hbs --no-cache",
+    "dev": "parcel src/index.html --port 3000 --no-cache",
+    "build": "parcel build src/index.html",
     "start": "npm run build && node ./server.js",
     "clear": "rimraf ./dist"
   },
@@ -29,9 +40,5 @@
   "bugs": {
     "url": "https://github.com/m0000Amir/middle.messenger.praktikum.yandex/issues"
   },
-  "homepage": "https://github.com/m0000Amir/middle.messenger.praktikum.yandex#readme",
-  "engines": {
-    "npm": ">=8.1.4",
-    "node": ">=17.2.0"
-  }
+  "homepage": "https://github.com/m0000Amir/middle.messenger.praktikum.yandex#readme"
 }
