@@ -1,9 +1,12 @@
 @import "../../styles/variables.less";
 
 .input-form {
+  display: flex;
+  flex-direction: column;
   font-family: @inter-font;
   font-style: normal;
   font-weight: 500;
+  margin-top: 10px;
 
   &__title {
     font-size: 9px;
@@ -23,4 +26,15 @@
       color: @black-color;
     }
   }
+}
+
+.input-error {
+  display: flex;
+  flex-direction: column;
+  font-size: 8px;
+  line-height: 1.2rem;
+  font-weight: 400;
+  font-family: @inter-font;
+  color: red;
+  transition: visibility .25s, opacity .25s;
 }

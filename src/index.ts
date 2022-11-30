@@ -14,8 +14,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const profilePage = new ProfilePage();
   const chatPage = new ChatPage();
 
-  renderDOM('#app', loginPage);
-  // renderDOM('#app', registrationPage);
+  // renderDOM('#app', loginPage);
+  renderDOM('#app', registrationPage);
   // renderDOM('#app', profilePage);
   // renderDOM('#app', error404Page);
   // renderDOM('#app', error500Page);

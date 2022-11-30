@@ -89,6 +89,10 @@ export class RegistrationPage extends Block {
           inputType: 'password',
           inputName: 'password',
           inputPlaceholder: '••••••••••••',
+          events: {
+            focusin,
+            focusout,
+          },
         }),
         new Input({
           class: 'input-form',
