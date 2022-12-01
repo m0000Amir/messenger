@@ -62,8 +62,8 @@ jobs:
       run: bash tests-second-floor/sprint_1/check_parcel.sh
 #    - name: Check PORT 3000
 #      run: bash tests-second-floor/sprint_1/check_port.sh
-    - name: Check routing
-      run: node tests-second-floor/sprint_1/check_routing.js
+#    - name: Check routing
+#      run: node tests-second-floor/sprint_1/check_routing.js
       # sprint 2 checks
     - name: Check typescript in package.json
       run: node tests-second-floor/sprint_2/check_typescript.js
