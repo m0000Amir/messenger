@@ -6,7 +6,7 @@ import './profile.less';
 import Img from '../../components/Img';
 import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
-import { focusin, focusout } from '../../utils/events';
+import { focusin, focusout, submit } from '../../utils/events';
 
 export class Profile extends Block {
   constructor() {
@@ -79,7 +79,7 @@ export class Profile extends Block {
           label: 'Username',
           inputClass: 'profile-input-form__input',
           inputType: 'text',
-          inputName: 'Username',
+          inputName: 'user_name',
           inputPlaceholder: '',
           events: {
             focusin,
@@ -106,6 +106,7 @@ export class Profile extends Block {
         class: 'button-link',
         type: 'submit',
       }),
+      events: { submit },
     });
   }
 

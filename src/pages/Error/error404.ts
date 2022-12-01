@@ -13,7 +13,7 @@ class Error404Page extends Block {
       title: '404',
       message: 'Something wrong',
       link: new Link({
-        class: 'text-link',
+        class: 'error-text-link',
         href: './chat',
         label: 'Back to chats',
       }),

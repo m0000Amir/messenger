@@ -1,9 +1,7 @@
 {
   "extends": "stylelint-config-recommended-less",
   "rules": {
-    "color-hex-case": "lower",
-    "max-len": [2, 250],
-    "@typescript-eslint/no-unused-vars": 2
+    "color-hex-case": "lower"
   },
   "ignoreFiles": ["build/*"]
 }

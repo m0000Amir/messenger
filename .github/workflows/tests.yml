@@ -35,7 +35,7 @@ jobs:
       run: bash tests-second-floor/sprint_1/check_port.sh
     - name: Check routing
       run: node tests-second-floor/sprint_1/check_routing.js
-      
+
   sprint_2:
     if: ${{github.head_ref == 'sprint_2'}}
     runs-on: ubuntu-latest
@@ -64,7 +64,7 @@ jobs:
       run: bash tests-second-floor/sprint_1/check_port.sh
     - name: Check routing
       run: node tests-second-floor/sprint_1/check_routing.js
-      # sprint 2 checks
+       sprint 2 checks
     - name: Check typescript in package.json
       run: node tests-second-floor/sprint_2/check_typescript.js
     - name: Check tsconfig required rules
@@ -73,7 +73,7 @@ jobs:
       run: node tests-second-floor/sprint_2/check_eslint.js
     - name: Check stylelint
       run: node tests-second-floor/sprint_2/check_stylelint.js
-      
+
   sprint_3:
     if: ${{github.head_ref == 'sprint_3'}}
     runs-on: ubuntu-latest
@@ -94,7 +94,7 @@ jobs:
       run: set -eu && git clone https://github.com/Yandex-Practicum/tests-second-floor.git
     - name: Run the tests
       run: bash tests-second-floor/sprint_3/run.sh
-      
+
   sprint_4:
     if: ${{github.head_ref == 'sprint_4'}}
     runs-on: ubuntu-latest
