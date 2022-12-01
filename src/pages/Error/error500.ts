@@ -13,7 +13,7 @@ class Error500Page extends Block {
       title: '500',
       message: 'We have been fixing',
       link: new Link({
-        class: 'text-link',
+        class: 'error-text-link',
         href: './chat',
         label: 'Back to chats',
       }),
