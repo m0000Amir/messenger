@@ -91,3 +91,6 @@ lerna-debug.log
 Thumbs.db
 
 .parcel-cache/
+
+.DS_Store
+todoList.md

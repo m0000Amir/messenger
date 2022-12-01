@@ -1,0 +1,118 @@
+@import "../../styles/variables";
+.form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.message-input {
+  flex-direction: column;
+}
+
+.message {
+  flex: 2;
+  order: 2;
+  border: 1px solid silver;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  &-user {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0 0 0;
+    align-items: center;
+    border-bottom: 2px solid @light_grey-color;
+  }
+  &_avatar {
+    margin: 10px;
+    width: 47px;
+    height: 47px;
+    border-radius: 50%;
+    background-color: @background-color;
+  }
+  &_name {
+    margin: 5px;
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: 600;
+  }
+  &_history {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px 10px 30px;
+    height: 85%;
+    border-bottom: 1px solid @light_grey-color;
+    //flex: 10;
+    &-time{
+      font-size: 12px;
+      line-height: 12px;
+      align-self: center;
+      padding: 20px;
+      color: @grey-color;
+    }
+  }
+  &_in {
+    flex-direction: row;
+    &-message {
+      padding: 10px 10px 10px 30px;
+      width: 40%;
+      border-radius: 9px;
+      background-color: @background-color;
+      align-self: flex-start;
+      text-align: left;
+    }
+
+  }
+
+  &_out {
+    flex-direction: row;
+
+    &-message {
+      padding: 10px;
+      border-radius: 9px;
+      background-color: @light-blue-color;
+      align-self: flex-end;
+    }
+  }
+
+  &-input-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin: 5px;
+  }
+  &-input {
+    width: 100%;
+    height: 32px;
+    background-color: @background-color;
+    border-radius: 30px;
+    border: none;
+    flex-grow: 1;
+    padding: 0 0 0 5px;
+  }
+  &-img {
+    width:20px;
+    height:20px;
+    margin: 5px;
+  }
+
+
+  &-form {
+    text-align: center;
+    &__button {
+      display: inline-block;
+      margin: 5px;
+      width: 28px;
+      height: 28px;
+      background-color: @blue-color;
+      cursor: pointer;
+      border-radius: 50%;
+      color: @white-color;
+      border: none;
+      font-size: 20px;
+
+    }
+  }
+
+}
