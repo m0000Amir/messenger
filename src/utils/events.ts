@@ -20,6 +20,10 @@ const expression: Record<string, IPattern> = {
     rule: 'It must be consists 3 - 15 characters and first letter capitalized.',
     regExp: /^[А-ЯA-Z]{1}[а-яa-z-]{2,15}$/,
   },
+  user_name: {
+    rule: '',
+    regExp: /(?!^\d+$)^[a-zA-Z0-9_-]{0,40}$/,
+  },
   phone: {
     rule: 'It must be consists 10-15 numbers',
     regExp: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
