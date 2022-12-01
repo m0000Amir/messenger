@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
       break;
 
     case '/error500':
-      renderDOM('#app', error404Page);
+      renderDOM('#app', error500Page);
       break;
 
     default:
