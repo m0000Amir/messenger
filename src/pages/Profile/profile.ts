@@ -28,7 +28,7 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'email',
           inputName: 'email',
-          inputPlaceholder: 'pochta@yandex.ru',
+          inputPlaceholder: '',
           events: {
             focusin,
             focusout,
@@ -41,7 +41,7 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'text',
           inputName: 'login',
-          inputPlaceholder: 'AMukhtarov',
+          inputPlaceholder: '',
           events: {
             focusin,
             focusout,
@@ -54,7 +54,7 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'text',
           inputName: 'first_name',
-          inputPlaceholder: 'Amir',
+          inputPlaceholder: '',
           events: {
             focusin,
             focusout,
@@ -67,7 +67,7 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'text',
           inputName: 'second_name',
-          inputPlaceholder: 'Mukhtarov',
+          inputPlaceholder: '',
           events: {
             focusin,
             focusout,
@@ -80,7 +80,7 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'text',
           inputName: 'Username',
-          inputPlaceholder: 'Amir',
+          inputPlaceholder: '',
           events: {
             focusin,
             focusout,
@@ -93,7 +93,7 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'tel',
           inputName: 'phone',
-          inputPlaceholder: '+7 (999) 123 45 67',
+          inputPlaceholder: '',
           events: {
             focusin,
             focusout,

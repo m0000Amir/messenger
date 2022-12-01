@@ -14,23 +14,27 @@ const expression: Record<string, IPattern> = {
   },
   first_name: {
     rule: 'It must be consists 3 - 15 characters and first letter capitalized.',
-    regExp: /^[А-ЯA-Z]{1}[а-яa-z0-9_-]{3,15}$/,
+    regExp: /^[А-ЯA-Z]{1}[а-яa-z-]{2,15}$/,
   },
   second_name: {
     rule: 'It must be consists 3 - 15 characters and first letter capitalized.',
-    regExp: /^[А-ЯA-Z]{1}[а-яa-z0-9_-]{3,15}$/,
+    regExp: /^[А-ЯA-Z]{1}[а-яa-z-]{2,15}$/,
   },
   phone: {
     rule: 'It must be consists 10-15 numbers',
     regExp: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
   },
-  chat_name: {
-    rule: 'It must be consists 10-12 characters',
-    regExp: /^[а-яa-zА-ЯA-Z0-9_-]{3,15}$/,
-  },
   password: {
     rule: 'It must be consists 8-40 characters including a number and a capital letter.',
     regExp: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,
+  },
+  message: {
+    rule: 'It must not be empty.',
+    regExp: /(.|\s)*\S(.|\s)*$/,
+  },
+  search: {
+    rule: '',
+    regExp: /(?!^\d+$)^[a-zA-Z0-9_-]{0,40}$/,
   },
 };
 
@@ -43,8 +47,8 @@ const expression: Record<string, IPattern> = {
 const patternValidation = (event: Event): void => {
   const target = event.target as HTMLInputElement;
   const parent = target.parentElement;
-
   const error = parent?.querySelector('.input-error');
+  // const error = target.getElementsByTagName('span');
   const input = event.target as HTMLInputElement;
   const { regExp } = expression[input.name];
   const isValid: boolean = regExp.test(input.value);
@@ -65,7 +69,24 @@ const focusout = (event: Event): void => {
 
 const submit = (event: Event): void => {
   event.preventDefault();
-  console.log('submit');
+  const inputs = document.getElementsByTagName('input');
+
+  const isValid: boolean = Array.from(inputs).every((element: Element) => {
+    const inputElement = element as HTMLInputElement;
+    const { regExp } = expression[inputElement.name];
+    if (!regExp.test(inputElement.value)) {
+      inputElement.value = '';
+    }
+    return regExp.test(inputElement.value);
+  });
+
+  if (isValid) {
+    const data: Record<string, string> = {};
+    Array.from(inputs).forEach((input) => {
+      data[input.name] = input.value;
+    });
+    console.log(data);
+  }
 };
 
 export { focusin, focusout, submit };

@@ -3,10 +3,10 @@ import template from './form.hbs';
 import './form.less';
 
 interface FormProps {
-  formClass: string
+  formClass?: string
   inputs: Block[]
-  buttonClass: string
-  button: Block
+  buttonClass?: string
+  button?: Block
   events?: {
     submit: (e: SubmitEvent) => void;
   }

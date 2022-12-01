@@ -23,7 +23,7 @@ export class LoginPage extends Block {
           inputClass: 'input-form__input',
           inputType: 'text',
           inputName: 'login',
-          inputPlaceholder: 'AMukhtarov',
+          inputPlaceholder: '',
           events: {
             focusin,
             focusout,
@@ -36,7 +36,7 @@ export class LoginPage extends Block {
           inputClass: 'input-form__input',
           inputType: 'password',
           inputName: 'password',
-          inputPlaceholder: '••••••••••••',
+          inputPlaceholder: '',
           events: {
             focusin,
             focusout,
@@ -48,18 +48,23 @@ export class LoginPage extends Block {
         label: 'Sign in',
         class: 'button-link',
         type: 'submit',
+        events: { click: submit },
       }),
       events: { submit },
     });
     this.children.link = new Link({
       class: 'text-link',
-      href: './registration.hbs',
+      href: './registration',
       label: 'Sign Up',
+    });
+    this.children.chatLink = new Link({
+      class: 'text-link',
+      href: './chat',
+      label: 'Chat',
     });
   }
 
   render() {
-    // debugger;
     return this.compile(template, { ...this.props });
   }
 }

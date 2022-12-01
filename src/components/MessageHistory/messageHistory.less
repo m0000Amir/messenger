@@ -1,4 +1,13 @@
 @import "../../styles/variables";
+.form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.message-input {
+  flex-direction: column;
+}
 
 .message {
   flex: 2;
@@ -32,7 +41,7 @@
     display: flex;
     flex-direction: column;
     padding: 20px 20px 10px 30px;
-    height: 100%;
+    height: 85%;
     border-bottom: 1px solid @light_grey-color;
     //flex: 10;
     &-time{
@@ -74,13 +83,13 @@
     margin: 5px;
   }
   &-input {
-    width: 849px;
+    width: 100%;
     height: 32px;
     background-color: @background-color;
     border-radius: 30px;
     border: none;
-    padding-left: 10px;
     flex-grow: 1;
+    padding: 0 0 0 5px;
   }
   &-img {
     width:20px;
@@ -89,17 +98,21 @@
   }
 
 
-  &-button {
-    display: inline-block;
-    margin: 5px;
-    width: 28px;
-    height: 28px;
-    background-color: @blue-color;
-    cursor: pointer;
-    border-radius: 50%;
-    color: @white-color;
-    border: none;
-    font-size: 20px;
+  &-form {
     text-align: center;
+    &__button {
+      display: inline-block;
+      margin: 5px;
+      width: 28px;
+      height: 28px;
+      background-color: @blue-color;
+      cursor: pointer;
+      border-radius: 50%;
+      color: @white-color;
+      border: none;
+      font-size: 20px;
+
+    }
   }
+
 }

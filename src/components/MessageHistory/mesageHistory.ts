@@ -7,6 +7,7 @@ interface MessageHistoryProps {
   user: string
   messageIn: Block[]
   messageOut: Block[]
+  form: Block
 }
 
 export class MessageHistory extends Block {

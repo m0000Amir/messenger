@@ -4,6 +4,11 @@ import Dialogue from '../../components/Dialogue';
 import { MessageHistory } from '../../components/MessageHistory/mesageHistory';
 import { Message } from '../../components/Message/message';
 import './chat.less';
+import Form from '../../components/Form';
+import { focusin, focusout, submit } from '../../utils/events';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+import Link from '../../components/Link';
 
 export class ChatPage extends Block {
   constructor() {
@@ -11,6 +16,23 @@ export class ChatPage extends Block {
   }
 
   init() {
+    this.children.link = new Link({
+      class: 'chat-page__dialogues__link',
+      href: './profile',
+      label: 'Profile',
+    });
+    this.children.search = new Form({
+      inputs: [
+        new Input({
+          label: '',
+          inputClass: 'chat-page__dialogues_search',
+          inputType: 'text',
+          inputName: 'search',
+          inputPlaceholder: 'Search',
+
+        }),
+      ],
+    });
     this.children.dialogues = [
       new Dialogue({
         name: 'Andrew',
@@ -63,6 +85,30 @@ export class ChatPage extends Block {
           time: '13-38',
         }),
       ],
+      form: new Form({
+        formClass: 'form',
+        inputs: [
+          new Input({
+            class: 'message-input',
+            label: '',
+            inputClass: 'message-input',
+            inputType: 'text',
+            inputName: 'message',
+            inputPlaceholder: 'Message',
+            events: {
+              focusin,
+              focusout,
+            },
+          }),
+        ],
+        buttonClass: 'message-form',
+        button: new Button({
+          label: '>',
+          class: 'message-form__button',
+          type: 'submit',
+        }),
+        events: { submit },
+      }),
     });
   }
 

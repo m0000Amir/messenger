@@ -14,7 +14,7 @@ class Error404Page extends Block {
       message: 'Something wrong',
       link: new Link({
         class: 'text-link',
-        href: './chat.hbs',
+        href: './chat',
         label: 'Back to chats',
       }),
     });

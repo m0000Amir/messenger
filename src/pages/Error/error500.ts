@@ -14,7 +14,7 @@ class Error500Page extends Block {
       message: 'We have been fixing',
       link: new Link({
         class: 'text-link',
-        href: './chat.hbs',
+        href: './chat',
         label: 'Back to chats',
       }),
     });

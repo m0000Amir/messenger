@@ -14,12 +14,38 @@ window.addEventListener('DOMContentLoaded', () => {
   const profilePage = new ProfilePage();
   const chatPage = new ChatPage();
 
-  // renderDOM('#app', loginPage);
-  renderDOM('#app', registrationPage);
-  // renderDOM('#app', profilePage);
-  // renderDOM('#app', error404Page);
-  // renderDOM('#app', error500Page);
-  // renderDOM('#app', chatPage);
+  renderDOM('#app', loginPage);
+
+  const path: string = document.location.pathname;
+
+  switch (path) {
+    case '/':
+      break;
+
+    case '/login':
+      renderDOM('#app', loginPage);
+      break;
+
+    case '/chat':
+      renderDOM('#app', chatPage);
+      break;
+
+    case '/profile':
+      renderDOM('#app', profilePage);
+      break;
+
+    case '/registration':
+      renderDOM('#app', registrationPage);
+      break;
+
+    case '/error500':
+      renderDOM('#app', error404Page);
+      break;
+
+    default:
+      renderDOM('#app', error404Page);
+      break;
+  }
 
   loginPage.dispatchComponentDidMount();
   registrationPage.dispatchComponentDidMount();
