@@ -42,6 +42,10 @@ window.addEventListener('DOMContentLoaded', () => {
       renderDOM('#app', error500Page);
       break;
 
+    case '/error404':
+      renderDOM('#app', error404Page);
+      break;
+
     default:
       renderDOM('#app', error404Page);
       break;

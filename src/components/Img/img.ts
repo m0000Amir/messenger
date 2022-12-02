@@ -3,6 +3,7 @@ import template from './img.hbs';
 import './img.less';
 
 interface ImgProps {
+  alt?: string
   class: string
   srcImg: string
 }

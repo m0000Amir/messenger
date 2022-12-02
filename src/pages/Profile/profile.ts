@@ -15,6 +15,7 @@ export class Profile extends Block {
 
   init() {
     this.children.img = new Img({
+      alt: 'logo',
       class: 'img',
       srcImg: profileLogo,
     });

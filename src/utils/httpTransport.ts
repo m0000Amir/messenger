@@ -6,11 +6,13 @@ enum Methods {
 }
 
 interface IOptions {
-  method: Methods;
+  method?: Methods;
   data?: any;
   timeout?: number;
   headers?: Record<string, string>;
 }
+
+type HTTPMethod = (url: string, options: IOptions) => Promise<unknown>;
 
 export function queryStringify(data: {[index: string]: any}) {
   if (typeof data !== 'object') {
@@ -22,49 +24,21 @@ export function queryStringify(data: {[index: string]: any}) {
 }
 
 export class HTTPTransport {
-  get(
-    url: string,
-    options: Omit<IOptions, 'method'>,
-  ): Promise<XMLHttpRequest | unknown> {
-    return this.request(
-      url,
-      { ...options, method: Methods.GET },
-      options.timeout,
-    );
-  }
+  get: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Methods.GET }, options.timeout)
+  );
 
-  post(
-    url: string,
-    options: Omit<IOptions, 'method'>,
-  ): Promise<XMLHttpRequest | unknown> {
-    return this.request(
-      url,
-      { ...options, method: Methods.POST },
-      options.timeout,
-    );
-  }
+  post: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Methods.POST }, options.timeout)
+  );
 
-  put(
-    url: string,
-    options: Omit<IOptions, 'method'>,
-  ): Promise<XMLHttpRequest | unknown> {
-    return this.request(
-      url,
-      { ...options, method: Methods.PUT },
-      options.timeout,
-    );
-  }
+  put: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Methods.PUT }, options.timeout)
+  );
 
-  delete(
-    url: string,
-    options: Omit<IOptions, 'method'>,
-  ): Promise<XMLHttpRequest | unknown> {
-    return this.request(
-      url,
-      { ...options, method: Methods.DELETE },
-      options.timeout,
-    );
-  }
+  delete: HTTPMethod = (url, options = {}) => (
+    this.request(url, { ...options, method: Methods.DELETE }, options.timeout)
+  );
 
   request(
     url: string,

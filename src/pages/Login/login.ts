@@ -62,6 +62,17 @@ export class LoginPage extends Block {
       href: './chat',
       label: 'Chat',
     });
+    this.children.error404Link = new Link({
+      class: 'text-link',
+      href: './error404',
+      label: '404',
+    });
+
+    this.children.error500Link = new Link({
+      class: 'text-link',
+      href: './error500',
+      label: '500',
+    });
   }
 
   render() {
