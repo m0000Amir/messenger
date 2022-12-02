@@ -5,7 +5,7 @@ import { ErrorPage } from '../../components/Error/error';
 
 class Error404Page extends Block {
   constructor() {
-    super();
+    super({});
   }
 
   init() {
