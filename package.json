@@ -24,7 +24,7 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
   "version": "1.0.0",
   "scripts": {
-    "dev": "parcel src/index.html --port 3000 --no-cache",
+    "dev": "parcel src/index.html --port 3000 --no-cache --open",
     "build": "parcel build src/index.html",
     "start": "npm run build && node ./server.js",
     "clear": "rimraf ./dist"

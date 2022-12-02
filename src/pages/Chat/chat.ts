@@ -1,14 +1,16 @@
 import { Block } from '../../utils/Block';
 import template from './chat.hbs';
 import Dialogue from '../../components/Dialogue';
-import { MessageHistory } from '../../components/MessageHistory/mesageHistory';
-import { Message } from '../../components/Message/message';
-import './chat.less';
+import MessageHistory from '../../components/MessageHistory';
+import Message from '../../components/Message';
 import Form from '../../components/Form';
-import { focusin, focusout, submit } from '../../utils/events';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Link from '../../components/Link';
+import Img from '../../components/Img';
+import { focusin, focusout, submit } from '../../utils/events';
+import clipImg from '../../static/image/clip.svg';
+import './chat.less';
 
 export class ChatPage extends Block {
   constructor() {
@@ -85,6 +87,11 @@ export class ChatPage extends Block {
           time: '13-38',
         }),
       ],
+      clip: new Img({
+        alt: 'clip',
+        class: 'message-img',
+        srcImg: clipImg,
+      }),
       form: new Form({
         formClass: 'form',
         inputs: [

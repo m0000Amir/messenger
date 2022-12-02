@@ -1,6 +1,8 @@
 import { nanoid } from 'nanoid';
 import EventBus from './EventBus';
 
+export type TProps = Record<string, any>;
+
 export class Block {
   static EVENTS = {
     INIT: 'init',
@@ -30,7 +32,7 @@ export class Block {
    * @returns {void}
    */
 
-  constructor(propsWithChildren: any = {}) {
+  constructor(propsWithChildren: TProps = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -51,7 +53,7 @@ export class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _getChildrenAndProps(childrenAndProps: any) {
+  private _getChildrenAndProps(childrenAndProps: TProps) {
     const props: Record<string, any> = {};
     const children: Record<string, Block> | Record<string, Block[]> = {};
 
@@ -125,18 +127,18 @@ export class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps?: any, newProps?: any) {
+  private _componentDidUpdate(oldProps: TProps, newProps: TProps) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProps: any, newProps: any) {
+  protected componentDidUpdate(oldProps: TProps, newProps: TProps) {
     console.log(oldProps, newProps);
     return true;
   }
 
-  public setProps = (nextProps: any) => {
+  public setProps = (nextProps: TProps) => {
     if (!nextProps) {
       return;
     }
