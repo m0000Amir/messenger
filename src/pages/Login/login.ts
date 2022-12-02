@@ -9,7 +9,7 @@ import { focusin, focusout, submit } from '../../utils/events';
 
 export class LoginPage extends Block {
   constructor() {
-    super();
+    super({});
   }
 
   init() {

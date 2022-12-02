@@ -1,26 +1,32 @@
-import { Block } from '../../utils/Block';
 import Input from '../../components/Input';
+import template from './changeData.hbs';
+import { Block } from '../../utils/Block';
 import Button from '../../components/Button';
-import template from './registration.hbs';
-import './registration.less';
-import Link from '../../components/Link';
+import './changeData.less';
+import Img from '../../components/Img';
+import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
 import { focusin, focusout, submit } from '../../utils/events';
 
-export class RegistrationPage extends Block {
+export class ChangeData extends Block {
   constructor() {
     super({});
   }
 
   init() {
+    this.children.img = new Img({
+      alt: 'logo',
+      class: 'img',
+      srcImg: profileLogo,
+    });
     this.children.form = new Form({
-      formClass: 'fields',
+      formClass: 'change_data-fields',
       inputs: [
         new Input({
-          class: 'input-form',
-          spanClass: 'input-form__title',
+          class: 'change_data-input-form',
+          spanClass: 'change_data-input-form__title',
           label: 'Email',
-          inputClass: 'input-form__input',
+          inputClass: 'change_data-input-form__input',
           inputType: 'email',
           inputName: 'email',
           inputPlaceholder: '',
@@ -30,10 +36,10 @@ export class RegistrationPage extends Block {
           },
         }),
         new Input({
-          class: 'input-form',
-          spanClass: 'input-form__title',
+          class: 'change_data-input-form',
+          spanClass: 'change_data-input-form__title',
           label: 'Login',
-          inputClass: 'input-form__input',
+          inputClass: 'change_data-input-form__input',
           inputType: 'text',
           inputName: 'login',
           inputPlaceholder: '',
@@ -43,10 +49,10 @@ export class RegistrationPage extends Block {
           },
         }),
         new Input({
-          class: 'input-form',
-          spanClass: 'input-form__title',
+          class: 'change_data-input-form',
+          spanClass: 'change_data-input-form__title',
           label: 'First name',
-          inputClass: 'input-form__input',
+          inputClass: 'change_data-input-form__input',
           inputType: 'text',
           inputName: 'first_name',
           inputPlaceholder: '',
@@ -56,10 +62,10 @@ export class RegistrationPage extends Block {
           },
         }),
         new Input({
-          class: 'input-form',
-          spanClass: 'input-form__title',
+          class: 'change_data-input-form',
+          spanClass: 'change_data-input-form__title',
           label: 'Second name',
-          inputClass: 'input-form__input',
+          inputClass: 'change_data-input-form__input',
           inputType: 'text',
           inputName: 'second_name',
           inputPlaceholder: '',
@@ -69,10 +75,23 @@ export class RegistrationPage extends Block {
           },
         }),
         new Input({
-          class: 'input-form',
-          spanClass: 'input-form__title',
+          class: 'change_data-input-form',
+          spanClass: 'change_data-input-form__title',
+          label: 'Username',
+          inputClass: 'change_data-input-form__input',
+          inputType: 'text',
+          inputName: 'user_name',
+          inputPlaceholder: '',
+          events: {
+            focusin,
+            focusout,
+          },
+        }),
+        new Input({
+          class: 'change_data-input-form',
+          spanClass: 'change_data-input-form__title',
           label: 'Phone',
-          inputClass: 'input-form__input',
+          inputClass: 'change_data-input-form__input',
           inputType: 'tel',
           inputName: 'phone',
           inputPlaceholder: '',
@@ -81,46 +100,14 @@ export class RegistrationPage extends Block {
             focusout,
           },
         }),
-        new Input({
-          class: 'input-form',
-          spanClass: 'input-form__title',
-          label: 'Password',
-          inputClass: 'input-form__input',
-          inputType: 'password',
-          inputName: 'password',
-          inputPlaceholder: '',
-          events: {
-            focusin,
-            focusout,
-          },
-        }),
-        new Input({
-          class: 'input-form',
-          spanClass: 'input-form__title',
-          label: 'Confirm password',
-          inputClass: 'input-form__input',
-          inputType: 'password',
-          inputName: 'password',
-          inputPlaceholder: '',
-          events: {
-            focusin,
-            focusout,
-          },
-        }),
       ],
-      buttonClass: 'registration__link',
+      buttonClass: 'change_data-button',
       button: new Button({
-        label: 'Sign Up',
+        label: 'Save',
         class: 'button-link',
         type: 'submit',
       }),
       events: { submit },
-    });
-
-    this.children.link = new Link({
-      class: 'text-link',
-      href: './login',
-      label: 'Sign In',
     });
   }
 
