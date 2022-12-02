@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import EventBus from './EventBus';
 
-export type TProps = Record<string, any>;
+export type TProps = Record<string, any | unknown>;
 
 export class Block {
   static EVENTS = {
@@ -15,14 +15,14 @@ export class Block {
 
   protected props: Record<string, unknown>;
 
-  protected children: Record<string, Block> | Record<string, Block[]>;
+  protected children: TProps;
 
   private eventBus: () => EventBus;
 
   private _element: HTMLElement | null = null;
 
   private _meta: {
-    props: Record<string, unknown>;
+    props: TProps;
     tagName?: string;
   };
 
