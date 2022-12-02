@@ -3,7 +3,7 @@ import template from './messageHistory.hbs';
 import './messageHistory.less';
 
 interface MessageHistoryProps {
-  user: string
+  senderName: string
   messageIn: Block[]
   messageOut: Block[]
   clip: Block

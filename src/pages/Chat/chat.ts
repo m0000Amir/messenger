@@ -11,6 +11,9 @@ import Img from '../../components/Img';
 import { focusin, focusout, submit } from '../../utils/events';
 import clipImg from '../../static/image/clip.svg';
 import './chat.less';
+import {
+  dialogues, messagesOut, messagesIn, senderName,
+} from '../../utils/mockData';
 
 export class ChatPage extends Block {
   constructor() {
@@ -35,58 +38,11 @@ export class ChatPage extends Block {
         }),
       ],
     });
-    this.children.dialogues = [
-      new Dialogue({
-        name: 'Andrew',
-        lastMessage: 'Hello!',
-        time: '13:40',
-      }),
-      new Dialogue({
-        name: 'John',
-        lastMessage: 'Sure!',
-        time: '12:01',
-      }),
-      new Dialogue({
-        name: 'Mark',
-        lastMessage: 'Definitely!',
-        time: '11:23',
-      }),
-      new Dialogue({
-        name: 'Emily',
-        lastMessage: 'Here you go!',
-        time: '09:02',
-
-      }),
-      new Dialogue({
-        name: 'Jane',
-        lastMessage: 'Here you are!',
-        time: '08:02',
-      }),
-    ];
+    this.children.dialogues = dialogues.map((dlg) => new Dialogue({ ...dlg }));
     this.children.messageHistory = new MessageHistory({
-      user: 'Andrew',
-      messageIn: [
-        new Message({
-          messageClass: 'message_in-message',
-          text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, quibusdam! Officia autem quo eius nobis voluptatem molestias dolore odio quaerat hic, optio, voluptatibus perspiciatis quasi illum quam, laborum temporibus et!',
-          timeClass: 'message-time',
-          time: '13:38',
-        }),
-        new Message({
-          messageClass: 'message_in-message',
-          text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, quibusdam! Officia autem quo eius nobis voluptatem molestias dolore odio quaerat hic, optio, voluptatibus perspiciatis quasi illum quam, laborum temporibus et!',
-          timeClass: 'message-time',
-          time: '13:40',
-        }),
-      ],
-      messageOut: [
-        new Message({
-          messageClass: 'message_out-message',
-          text: 'Cool!',
-          timeClass: 'message-time',
-          time: '13-38',
-        }),
-      ],
+      senderName,
+      messageIn: messagesIn.map((msg) => new Message({ ...msg })),
+      messageOut: messagesOut.map((msg) => new Message({ ...msg })),
       clip: new Img({
         alt: 'clip',
         class: 'message-img',
