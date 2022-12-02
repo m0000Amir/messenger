@@ -26,6 +26,8 @@ export const dialogues = [
   },
 ];
 
+export const senderName = 'Andrew';
+
 export const messagesIn = [
   {
     messageClass: 'message_in-message',

@@ -11,7 +11,9 @@ import Img from '../../components/Img';
 import { focusin, focusout, submit } from '../../utils/events';
 import clipImg from '../../static/image/clip.svg';
 import './chat.less';
-import { dialogues, messagesOut, messagesIn } from '../../utils/mockData';
+import {
+  dialogues, messagesOut, messagesIn, senderName,
+} from '../../utils/mockData';
 
 export class ChatPage extends Block {
   constructor() {
@@ -38,7 +40,7 @@ export class ChatPage extends Block {
     });
     this.children.dialogues = dialogues.map((dlg) => new Dialogue({ ...dlg }));
     this.children.messageHistory = new MessageHistory({
-      user: 'Andrew',
+      senderName,
       messageIn: messagesIn.map((msg) => new Message({ ...msg })),
       messageOut: messagesOut.map((msg) => new Message({ ...msg })),
       clip: new Img({
