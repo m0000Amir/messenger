@@ -2,8 +2,8 @@ import { nanoid } from 'nanoid';
 import EventBus from './EventBus';
 
 export type TProps = Record<string, any | unknown>;
-
-export class Block {
+//
+export abstract class Block<Props extends Record<string, any | object> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -15,27 +15,23 @@ export class Block {
 
   protected props: Record<string, unknown>;
 
-  protected children: TProps;
+  protected children: Record<string, Block | Block[]>;
 
   private eventBus: () => EventBus;
 
   private _element: HTMLElement | null = null;
 
-  private _meta: {
-    props: TProps;
+  private readonly _meta: {
+    props: Props;
     tagName?: string;
   };
 
-  /** JSDoc
-   * @param {Object} propsWithChildren
-   *
-   * @returns {void}
-   */
-
-  constructor(propsWithChildren: TProps = {}) {
+  protected constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
 
-    const { props, children } = this._getChildrenAndProps(propsWithChildren);
+    const { props, children } = this._getChildrenAndProps(
+      propsWithChildren || {} as Props,
+    );
 
     this._meta = {
       props,
@@ -53,7 +49,10 @@ export class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _getChildrenAndProps(childrenAndProps: TProps) {
+  private _getChildrenAndProps(childrenAndProps: Props): {
+    props: Props;
+    children: Record<string, Block | Block[]>;
+  } {
     const props: Record<string, any> = {};
     const children: Record<string, Block> | Record<string, Block[]> = {};
 
@@ -70,11 +69,13 @@ export class Block {
       }
     });
 
-    return { props, children };
+    return { props: props as Props, children };
   }
 
   private _removeEvents() {
-    const { events } = this.props;
+    const { events = {} } = this.props as Props & {
+      events: Record<string, () => void>;
+    };
 
     if (!events || !this._element) {
       return;
@@ -127,18 +128,18 @@ export class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  private _componentDidUpdate(oldProps: TProps, newProps: TProps) {
+  private _componentDidUpdate(oldProps: Props, newProps: Props) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProps: TProps, newProps: TProps) {
+  protected componentDidUpdate(oldProps: Props, newProps: Props) {
     console.log(oldProps, newProps);
     return true;
   }
 
-  public setProps = (nextProps: TProps) => {
+  public setProps = (nextProps: Props) => {
     if (!nextProps) {
       return;
     }
