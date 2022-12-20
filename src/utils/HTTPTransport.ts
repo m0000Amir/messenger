@@ -24,6 +24,13 @@ export function queryStringify(data: {[index: string]: any}) {
 }
 
 export class HTTPTransport {
+  static API_URL = 'https://ya-praktikum.tech/api/v2';
+  protected endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  }
+
   get: HTTPMethod = (url, options = {}) => (
     this.request(url, { ...options, method: Methods.GET }, options.timeout)
   );

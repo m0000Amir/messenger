@@ -4,6 +4,7 @@
     "plugins": ["@typescript-eslint"],
     "rules": {
         "@typescript-eslint/no-unused-vars": "off",
+        "eslint-disable-next-line no-constructor-return": true,
 
         "max-len": [1, 250],
         "max-params": [2, 3],
