@@ -23,7 +23,7 @@ export class ChatPage extends Block {
   init() {
     this.children.link = new Link({
       class: 'chat-page__dialogues__link',
-      href: './profile',
+      href: '/profile',
       label: 'Profile',
     });
     this.children.search = new Form({

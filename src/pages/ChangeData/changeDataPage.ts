@@ -8,7 +8,7 @@ import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
 import { focusin, focusout, submit } from '../../utils/events';
 
-export class ChangeData extends Block {
+export class ChangeDataPage extends Block {
   constructor() {
     super({});
   }
@@ -106,9 +106,15 @@ export class ChangeData extends Block {
         label: 'Save',
         class: 'button-link',
         type: 'submit',
+        events: {
+          click: () => this.onSubmit(),
+        },
       }),
-      events: { submit },
     });
+  }
+
+  onSubmit() {
+
   }
 
   render() {

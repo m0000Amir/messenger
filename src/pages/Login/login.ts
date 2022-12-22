@@ -6,6 +6,8 @@ import Input from '../../components/Input';
 import Link from '../../components/Link';
 import Form from '../../components/Form';
 import { focusin, focusout, submit } from '../../utils/events';
+import { SigninData } from '../../types/types';
+import AuthController from '../../controllers/AuthControllers';
 
 export class LoginPage extends Block {
   constructor() {
@@ -13,6 +15,7 @@ export class LoginPage extends Block {
   }
 
   init() {
+    // @ts-ignore
     this.children.form = new Form({
       formClass: 'fields',
       inputs: [
@@ -48,31 +51,43 @@ export class LoginPage extends Block {
         label: 'Sign in',
         class: 'button-link',
         type: 'submit',
-        events: { click: submit },
+        events: {
+          click: (e) => this.onSubmit(e),
+        },
       }),
       events: { submit },
     });
     this.children.link = new Link({
       class: 'text-link',
-      href: './registration',
+      href: '/registration',
       label: 'Sign Up',
     });
     this.children.chatLink = new Link({
       class: 'text-link',
-      href: './chat',
+      href: '/chat',
       label: 'Chat',
     });
     this.children.error404Link = new Link({
       class: 'text-link',
-      href: './error404',
+      href: '/error404',
       label: '404',
     });
 
     this.children.error500Link = new Link({
       class: 'text-link',
-      href: './error500',
+      href: '/error500',
       label: '500',
     });
+  }
+
+  onSubmit(e: Event) {
+    submit(e);
+    const inputs = document.getElementsByTagName('input');
+    const data: Record<string, string> = {};
+    Array.from(inputs).forEach((input) => {
+      data[input.name] = input.value;
+    });
+    AuthController.signin(data as SigninData);
   }
 
   render() {

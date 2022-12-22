@@ -8,7 +8,7 @@ import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
 import { focusin, focusout, submit } from '../../utils/events';
 
-export class ChangePassword extends Block {
+export class ChangePasswordPage extends Block {
   constructor() {
     super({});
   }

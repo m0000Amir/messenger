@@ -119,7 +119,7 @@ export class RegistrationPage extends Block {
 
     this.children.link = new Link({
       class: 'text-link',
-      href: './login',
+      href: '/',
       label: 'Sign In',
     });
   }

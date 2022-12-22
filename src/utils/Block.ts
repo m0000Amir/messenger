@@ -1,9 +1,9 @@
 import { nanoid } from 'nanoid';
 import EventBus from './EventBus';
 
-export type TProps = Record<string, any | unknown>;
+// export type TProps = Record<string, any | unknown>;
 //
-export abstract class Block<Props extends Record<string, any | object> = any> {
+export class Block<Props extends Record<string, any | object> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -13,7 +13,7 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
 
   public id = nanoid(6);
 
-  protected props: Record<string, unknown>;
+  protected props: Props;
 
   protected children: Record<string, Block | Block[]>;
 
@@ -26,7 +26,7 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
     tagName?: string;
   };
 
-  protected constructor(propsWithChildren: Props) {
+  constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(
@@ -86,12 +86,10 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
     });
   }
 
-  private _addEvents() {
-    const { events = {} } = this.props as {
-      events: Record<string, () => void>;
-    };
+  _addEvents() {
+    const {events = {}} = this.props as Props & { events: Record<string, () => void> };
 
-    Object.keys(events).forEach((eventName) => {
+    Object.keys(events).forEach(eventName => {
       this._element?.addEventListener(eventName, events[eventName]);
     });
   }

@@ -1,5 +1,4 @@
-// eslint-disable-next-line max-classes-per-file
-import { Block } from './Block';
+import Block from './Block';
 
 function isEqual(lhs: string, rhs: string): boolean {
   return lhs === rhs;
@@ -74,7 +73,7 @@ class Router {
       const target = event.currentTarget as Window;
 
       this._onRoute(target.location.pathname);
-    };
+    }
 
     this._onRoute(window.location.pathname);
   }
@@ -110,7 +109,7 @@ class Router {
   }
 
   private getRoute(pathname: string) {
-    return this.routes.find((route) => route.match(pathname));
+    return this.routes.find(route => route.match(pathname));
   }
 }
 

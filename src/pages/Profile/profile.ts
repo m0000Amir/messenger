@@ -6,6 +6,9 @@ import Img from '../../components/Img';
 import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
 import Link from '../../components/Link';
+import Button from '../../components/Button';
+import { AuthController } from '../../controllers/AuthControllers';
+
 
 export class Profile extends Block {
   constructor() {
@@ -80,20 +83,32 @@ export class Profile extends Block {
       buttonClass: 'profile-button',
     });
     this.children.changeData = new Link({
-      class: 'profile-button__text',
-      href: './change-data',
+      class: 'profile-link',
+      href: '/change-data',
       label: 'Change Data',
     });
     this.children.changePassword = new Link({
-      class: 'profile-button__text',
-      href: './change-password',
+      class: 'profile-link',
+      href: '/change-password',
       label: 'Change Password',
     });
-    this.children.exit = new Link({
-      class: 'profile-button__text-exit',
-      href: './chat',
+    // this.children.exit = new Link({
+    //   class: 'profile-button__text-exit',
+    //   href: '/',
+    //   label: 'Exit',
+    // });
+    this.children.exit = new Button({
       label: 'Exit',
+      class: 'button-exit',
+      events: {
+        click: (e) => this.onSubmit(e),
+      },
     });
+  }
+
+  onSubmit() {
+    // todo: доделать
+    AuthController.logout();
   }
 
   render() {
