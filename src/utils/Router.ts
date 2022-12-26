@@ -23,7 +23,7 @@ class Route {
 
   constructor(
     private pathname: string,
-    private readonly blockClass: typeof Block,
+    private readonly BlockClass: typeof Block,
     private readonly query: string) {
   }
 
@@ -37,7 +37,7 @@ class Route {
 
   render() {
     if (!this.block) {
-      this.block = new this.blockClass({});
+      this.block = new this.BlockClass({});
 
       render(this.query, this.block);
       return;
@@ -73,7 +73,7 @@ class Router {
       const target = event.currentTarget as Window;
 
       this._onRoute(target.location.pathname);
-    }
+    };
 
     this._onRoute(window.location.pathname);
   }
@@ -109,7 +109,7 @@ class Router {
   }
 
   private getRoute(pathname: string) {
-    return this.routes.find(route => route.match(pathname));
+    return this.routes.find((route) => route.match(pathname));
   }
 }
 

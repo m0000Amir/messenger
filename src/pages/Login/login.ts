@@ -5,8 +5,8 @@ import './login.less';
 import Input from '../../components/Input';
 import Link from '../../components/Link';
 import Form from '../../components/Form';
-import { focusin, focusout, submit } from '../../utils/events';
-import { SigninData } from '../../types/types';
+import { focusin, focusout, isValid, submit } from '../../utils/events';
+import { Routes, SigninData } from '../../types/types';
 import AuthController from '../../controllers/AuthControllers';
 
 export class LoginPage extends Block {
@@ -55,39 +55,46 @@ export class LoginPage extends Block {
           click: (e) => this.onSubmit(e),
         },
       }),
-      events: { submit },
     });
     this.children.link = new Link({
       class: 'text-link',
-      href: '/registration',
+      href: Routes.Registration,
       label: 'Sign Up',
     });
     this.children.chatLink = new Link({
       class: 'text-link',
-      href: '/chat',
+      href: Routes.Chat,
       label: 'Chat',
     });
     this.children.error404Link = new Link({
       class: 'text-link',
-      href: '/error404',
+      href: Routes.Error404,
       label: '404',
     });
 
     this.children.error500Link = new Link({
       class: 'text-link',
-      href: '/error500',
+      href: Routes.Error500,
       label: '500',
     });
   }
 
-  onSubmit(e: Event) {
-    submit(e);
+  onSubmit(event: Event) {
+    // debugger;
+    // submit(e);
+    event.preventDefault();
     const inputs = document.getElementsByTagName('input');
-    const data: Record<string, string> = {};
-    Array.from(inputs).forEach((input) => {
-      data[input.name] = input.value;
-    });
-    AuthController.signin(data as SigninData);
+    const signInData = {};
+    if (isValid(inputs)) {
+      Array.from(inputs).forEach((input) => {
+        signInData[input.name] = input.value;
+      });
+      AuthController.signin(signInData as SigninData);
+    }
+    // Array.from(inputs).forEach((input) => {
+    //   data[input.name] = input.value;
+    // });
+    // AuthController.signin(data as SigninData);
   }
 
   render() {

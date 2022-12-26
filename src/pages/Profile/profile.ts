@@ -7,19 +7,34 @@ import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
 import Link from '../../components/Link';
 import Button from '../../components/Button';
-import { AuthController } from '../../controllers/AuthControllers';
+import AuthController from '../../controllers/AuthControllers';
+import { Routes, User } from '../../types/types';
+import Router from '../../utils/Router';
+import { withStore } from '../../utils/Store';
 
+interface ProfileProps extends User {}
 
-export class Profile extends Block {
-  constructor() {
-    super({});
-  }
+export class ProfilePageBase extends Block<ProfileProps> {
+  // constructor(props: ProfilePageProps) {
+  //   super(props);
+  //   AuthController.fetchUser();
+  // }
+
+  // async componentDidMount() {
+  //   await AuthController.fetchUser();
+  // }
+
+  // public setProps = (nextProps: any) => {
+  //   debugger
+  //   super.setProps(nextProps);
+  // };
 
   init() {
+    console.log(this.props);
     this.children.img = new Img({
       alt: 'logo',
       class: 'img',
-      srcImg: profileLogo,
+      srcImg: this.props.avatar ? `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}` : profileLogo,
     });
     this.children.form = new Form({
       formClass: 'fields',
@@ -31,7 +46,9 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'email',
           inputName: 'email',
-          inputPlaceholder: 'pochta@yandex.ru',
+          inputPlaceholder: this.props.email,
+          readonly: 'readonly',
+
 
         }),
         new Input({
@@ -41,7 +58,8 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'text',
           inputName: 'login',
-          inputPlaceholder: 'AMukhtarov',
+          inputPlaceholder: this.props.login,
+          readonly: 'readonly',
         }),
         new Input({
           class: 'profile-input-form',
@@ -50,7 +68,8 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'text',
           inputName: 'first_name',
-          inputPlaceholder: 'Amir',
+          inputPlaceholder: this.props.first_name,
+          readonly: 'readonly',
         }),
         new Input({
           class: 'profile-input-form',
@@ -59,7 +78,8 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'text',
           inputName: 'second_name',
-          inputPlaceholder: 'Mukhtarov',
+          inputPlaceholder: this.props.second_name,
+          readonly: 'readonly',
         }),
         new Input({
           class: 'profile-input-form',
@@ -68,7 +88,8 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'text',
           inputName: 'user_name',
-          inputPlaceholder: 'Amir',
+          inputPlaceholder: this.props.display_name ? this.props.display_name : this.props.first_name,
+          readonly: 'readonly',
         }),
         new Input({
           class: 'profile-input-form',
@@ -77,19 +98,20 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'tel',
           inputName: 'phone',
-          inputPlaceholder: '+7 (999) 123 45 67',
+          inputPlaceholder: this.props.phone,
+          readonly: 'readonly',
         }),
       ],
       buttonClass: 'profile-button',
     });
     this.children.changeData = new Link({
       class: 'profile-link',
-      href: '/change-data',
+      href: Routes.ChangeData,
       label: 'Change Data',
     });
     this.children.changePassword = new Link({
       class: 'profile-link',
-      href: '/change-password',
+      href: Routes.ChangePassword,
       label: 'Change Password',
     });
     // this.children.exit = new Link({
@@ -101,7 +123,14 @@ export class Profile extends Block {
       label: 'Exit',
       class: 'button-exit',
       events: {
-        click: (e) => this.onSubmit(e),
+        click: () => this.onSubmit(),
+      },
+    });
+    this.children.back = new Button({
+      label: '<-',
+      class: 'button-back',
+      events: {
+        click: () => { Router.go(Routes.Chat); },
       },
     });
   }
@@ -111,7 +140,31 @@ export class Profile extends Block {
     AuthController.logout();
   }
 
+  // protected componentDidUpdate(oldProps: ProfileProps, newProps: ProfileProps): boolean {
+  //   /**
+  //    * Обновляем детей
+  //    */
+  //   (this.children.fields as ProfileField[]).forEach((field, i) => {
+  //     field.setProps({ value: newProps[userFields[i]] });
+  //   });
+  //
+  //   /**
+  //    * Другой вариант — просто заново создать всех детей. Но тогда метод должен возвращать true, чтобы новые дети отрендерились
+  //    *
+  //    * this.children.fields = userFields.map(name => {
+  //    *   return new ProfileField({ name, value: newProps[name] });
+  //    * });
+  //    */
+  //
+  //   /**
+  //    * Так как мы обновили детей, этот компонент не обязательно рендерить
+  //    */
+  //   return false;
+  // }
+
   render() {
     return this.compile(template, { ...this.props });
   }
 }
+const withUser = withStore((state) => ({ ...state.user }));
+export const ProfilePage = withUser(ProfilePageBase as typeof Block);

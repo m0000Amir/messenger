@@ -5,7 +5,9 @@ import template from './registration.hbs';
 import './registration.less';
 import Link from '../../components/Link';
 import Form from '../../components/Form';
-import { focusin, focusout, submit } from '../../utils/events';
+import { focusin, focusout, isValid, submit } from '../../utils/events';
+import { Routes, SignupData } from '../../types/types';
+import AuthController from '../../controllers/AuthControllers';
 
 export class RegistrationPage extends Block {
   constructor() {
@@ -112,16 +114,30 @@ export class RegistrationPage extends Block {
       button: new Button({
         label: 'Sign Up',
         class: 'button-link',
-        type: 'submit',
+        events: {
+          click: (e) => this.onSubmit(e),
+        },
       }),
-      events: { submit },
     });
 
     this.children.link = new Link({
       class: 'text-link',
-      href: '/',
+      href: Routes.Index,
       label: 'Sign In',
     });
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+    const inputs = document.getElementsByTagName('input');
+    const signUpData = {};
+    if (isValid(inputs)) {
+      Array.from(inputs).forEach((input) => {
+        signUpData[input.name] = input.value;
+      });
+      debugger
+      AuthController.signup(signUpData as SignupData);
+    }
   }
 
   render() {

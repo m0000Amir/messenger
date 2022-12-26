@@ -1,7 +1,14 @@
 <div class="{{ class }}">
     <span class="{{ spanClass }}">{{ label }}</span>
 
-    <input class="{{ inputClass }}" type="{{ inputType }}" name="{{ inputName }}" placeholder="{{ inputPlaceholder }}"/>
+    <input
+            class="{{ inputClass }}"
+            type="{{ inputType }}"
+            name="{{ inputName }}"
+            placeholder="{{ inputPlaceholder }}"
+            value="{{ value }}"
+            {{#if readonly}} {{readonly}}{{/if }}
+    />
 
     <span class="input-error">{{ error }}</span>
 </div>

@@ -1,4 +1,4 @@
-import { SigninData, SignupData } from '../types/types';
+import { Routes, SigninData, SignupData } from '../types/types';
 import { AuthAPI } from '../api/AuthAPI';
 import store from '../utils/Store';
 import router from '../utils/Router';
@@ -12,7 +12,7 @@ export class AuthController {
 
       await this.fetchUser();
       store.set('user.error', null);
-      Router.go('/profile');
+      router.go(Routes.Chat);
     } catch (e) {
       store.set('user.error', e);
       alert('Error during signing up');
@@ -25,7 +25,7 @@ export class AuthController {
 
       await this.fetchUser();
 
-      router.go('/chat');
+      router.go(Routes.Chat);
     } catch (e) {
       // alert('Error during signing in');
       console.error(e);
@@ -35,6 +35,8 @@ export class AuthController {
   async logout() {
     try {
       await this.api.logout();
+
+      // todo:  add MessageController close All
       router.go('/');
     } catch (e: any) {
       console.error(e.message);

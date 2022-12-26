@@ -9,7 +9,9 @@ interface InputFormProps {
   inputClass?: string
   inputType: string
   inputName: string
-  inputPlaceholder: string
+  inputPlaceholder?: string
+  readonly?: string
+  value?: string
   events?: { focusin: (e: Event) => void; focusout: (e: Event) => void };
 }
 

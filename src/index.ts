@@ -7,18 +7,8 @@ import ChatPage from './pages/Chat';
 import ChangePasswordPage from './pages/ChangePassword';
 import ChangeDataPage from './pages/ChangeData';
 import Router from './utils/Router';
-import { AuthController } from './controllers/AuthControllers';
-
-enum Routes {
-  Index = '/',
-  Registration = '/registration',
-  Profile = '/profile',
-  Chat = '/chat',
-  ChangePassword = '/change-password',
-  ChangeData = '/change-data',
-  Error404 = '/error404',
-  Error500 = '/error500',
-}
+import AuthController from './controllers/AuthControllers';
+import { Routes } from './types/types';
 
 window.addEventListener('DOMContentLoaded', async () => {
   Router
@@ -37,16 +27,17 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     case Routes.Index:
     case Routes.Registration:
-    case Routes.Chat:
-    case Routes.ChangePassword:
-    case Routes.ChangeData:
-    case Routes.Error404:
-    case Routes.Error500:
+    // case Routes.Chat:
+    // case Routes.ChangePassword:
+    // case Routes.ChangeData:
+    // case Routes.Error404:
+    // case Routes.Error500:
       isProtectedRoute = false;
       break;
   }
 
   try {
+    // debugger
     await AuthController.fetchUser();
 
     Router.start();

@@ -7,6 +7,8 @@ import Img from '../../components/Img';
 import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
 import { focusin, focusout, submit } from '../../utils/events';
+import router from '../../utils/Router';
+import { Routes } from '../../types/types';
 
 export class ChangePasswordPage extends Block {
   constructor() {
@@ -67,9 +69,15 @@ export class ChangePasswordPage extends Block {
         label: 'Save',
         class: 'button-link',
         type: 'submit',
+        events: {
+          click: () => { this.onSubmit(); },
+        },
       }),
-      events: { submit },
     });
+  }
+
+  onSubmit() {
+    router.go(Routes.Profile);
   }
 
   render() {

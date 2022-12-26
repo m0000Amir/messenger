@@ -6,7 +6,10 @@ import './changeData.less';
 import Img from '../../components/Img';
 import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
-import { focusin, focusout, submit } from '../../utils/events';
+import { focusin, focusout, isValid, submit } from '../../utils/events';
+import router from '../../utils/Router';
+import { Routes, SigninData, UpdateUserData } from '../../types/types';
+import UserController from '../../controllers/UserController';
 
 export class ChangeDataPage extends Block {
   constructor() {
@@ -107,14 +110,23 @@ export class ChangeDataPage extends Block {
         class: 'button-link',
         type: 'submit',
         events: {
-          click: () => this.onSubmit(),
+          click: (e) => this.onSubmit(e),
         },
       }),
     });
   }
 
-  onSubmit() {
-
+  onSubmit(event: Event) {
+    event.preventDefault();
+    const inputs = document.getElementsByTagName('input');
+    const updateUserData = {};
+    if (isValid(inputs)) {
+      Array.from(inputs).forEach((input) => {
+        updateUserData[input.name] = input.value;
+      });
+      UserController.updateUser(updateUserData as UpdateUserData);
+      router.go(Routes.Profile);
+    }
   }
 
   render() {

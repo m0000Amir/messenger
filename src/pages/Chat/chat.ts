@@ -14,6 +14,7 @@ import './chat.less';
 import {
   dialogues, messagesOut, messagesIn, senderName,
 } from '../../utils/mockData';
+import { Routes } from '../../types/types';
 
 export class ChatPage extends Block {
   constructor() {
@@ -23,7 +24,7 @@ export class ChatPage extends Block {
   init() {
     this.children.link = new Link({
       class: 'chat-page__dialogues__link',
-      href: '/profile',
+      href: Routes.Profile,
       label: 'Profile',
     });
     this.children.search = new Form({
