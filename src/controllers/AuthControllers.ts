@@ -55,14 +55,19 @@ export class AuthController {
   //   }
   // }
 
+  // async fetchUser() {
+  //   try {
+  //     const user = await this.api.read();
+  //
+  //     store.set('user', user);
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // }
   async fetchUser() {
-    try {
-      const user = await this.api.read();
+    const user = await this.api.read();
 
-      store.set('user', user);
-    } catch (e) {
-      console.error(e);
-    }
+    store.set('user', user);
   }
 }
 

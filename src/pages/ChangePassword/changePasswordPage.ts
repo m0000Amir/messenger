@@ -3,12 +3,11 @@ import template from './changePassword.hbs';
 import { Block } from '../../utils/Block';
 import Button from '../../components/Button';
 import './changePassword.less';
-import Img from '../../components/Avatar/avatar';
-import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
-import { focusin, focusout, submit } from '../../utils/events';
+import { focusin, focusout, isValid } from '../../utils/events';
 import router from '../../utils/Router';
-import { Routes } from '../../types/types';
+import { Routes, UpdatePassword } from '../../types/types';
+import UserController from '../../controllers/UserController';
 
 export class ChangePasswordPage extends Block {
   constructor() {
@@ -16,11 +15,6 @@ export class ChangePasswordPage extends Block {
   }
 
   init() {
-    this.children.img = new Img({
-      alt: 'logo',
-      class: 'img',
-      srcImg: profileLogo,
-    });
     this.children.form = new Form({
       formClass: 'change_password-fields',
       inputs: [
@@ -30,7 +24,7 @@ export class ChangePasswordPage extends Block {
           label: 'Old Password',
           inputClass: 'change_password-input-form__input',
           inputType: 'password',
-          inputName: 'password',
+          inputName: 'oldPassword',
           inputPlaceholder: '',
           events: {
             focusin,
@@ -43,7 +37,7 @@ export class ChangePasswordPage extends Block {
           label: 'New Password',
           inputClass: 'change_password-input-form__input',
           inputType: 'password',
-          inputName: 'password',
+          inputName: 'newPassword',
           inputPlaceholder: '',
           events: {
             focusin,
@@ -56,7 +50,7 @@ export class ChangePasswordPage extends Block {
           label: 'Confirm New Password',
           inputClass: 'change_password-input-form__input',
           inputType: 'password',
-          inputName: 'password',
+          inputName: 'confirmPassword',
           inputPlaceholder: '',
           events: {
             focusin,
@@ -70,14 +64,23 @@ export class ChangePasswordPage extends Block {
         class: 'button-link',
         type: 'submit',
         events: {
-          click: () => { this.onSubmit(); },
+          click: (e) => { this.onSubmit(e); },
         },
       }),
     });
   }
 
-  onSubmit() {
-    router.go(Routes.Profile);
+  onSubmit(event: Event) {
+    event.preventDefault();
+    const inputs = document.getElementsByTagName('input');
+    const updatePassword = {};
+    if (isValid(inputs)) {
+      Array.from(inputs).forEach((input) => {
+        updatePassword[input.name] = input.value;
+      });
+      UserController.updatePassword(updatePassword as UpdatePassword);
+      router.go(Routes.Profile);
+    }
   }
 
   render() {

@@ -133,7 +133,6 @@ export class Block<Props extends Record<string, any | object> = any> {
   }
 
   protected componentDidUpdate(oldProps: Props, newProps: Props) {
-    console.log(oldProps, newProps);
     return true;
   }
 

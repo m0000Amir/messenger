@@ -3,7 +3,7 @@ import {
   UpdatePassword,
   UpdateUserData,
 } from '../types/types';
-import { AuthController } from './AuthControllers';
+import AuthController from './AuthControllers';
 
 export class UserController {
   private api = new UserAPI();
@@ -12,7 +12,7 @@ export class UserController {
     try {
       await this.api.updateUser(data);
       // todo: check it
-      // await AuthController.fetchUser();
+      await AuthController.fetchUser();
     } catch (e: any) {
       console.error(e);
     }
@@ -28,7 +28,7 @@ export class UserController {
 
   async updateAvatar(data: FormData) {
     try {
-      debugger;
+      // debugger;
       await this.api.updateAvatar(data);
       await AuthController.fetchUser();
     } catch (e) {

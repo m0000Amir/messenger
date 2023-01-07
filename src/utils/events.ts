@@ -20,15 +20,27 @@ const expression: Record<string, IPattern> = {
     rule: 'It must be consists 3 - 15 characters and first letter capitalized.',
     regExp: /^[А-ЯA-Z]{1}[а-яa-z-]{2,15}$/,
   },
-  user_name: {
-    rule: '',
-    regExp: /(?!^\d+$)^[a-zA-Z0-9_-]{0,40}$/,
+  display_name: {
+    rule: 'It must be consists is no less than 3characters.',
+    regExp: /(?!^\d+$)^[a-zA-Z0-9_-]{3,40}$/,
   },
   phone: {
     rule: 'It must be consists 10-15 numbers',
     regExp: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
   },
   password: {
+    rule: 'It must be consists 8-40 characters including a number and a capital letter.',
+    regExp: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,
+  },
+  oldPassword: {
+    rule: 'It must be consists 8-40 characters including a number and a capital letter.',
+    regExp: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,
+  },
+  newPassword: {
+    rule: 'It must be consists 8-40 characters including a number and a capital letter.',
+    regExp: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,
+  },
+  confirmPassword: {
     rule: 'It must be consists 8-40 characters including a number and a capital letter.',
     regExp: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,
   },
@@ -104,4 +116,6 @@ const submit = (event: Event): void => {
   }
 };
 
-export { focusin, focusout, isValid, submit };
+export {
+  focusin, focusout, isValid, submit,
+};

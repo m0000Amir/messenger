@@ -44,11 +44,11 @@ export class ChatPage extends Block {
       senderName,
       messageIn: messagesIn.map((msg) => new Message({ ...msg })),
       messageOut: messagesOut.map((msg) => new Message({ ...msg })),
-      clip: new Avatar({
-        alt: 'clip',
-        class: 'message-img',
-        srcImg: clipImg,
-      }),
+      // clip: new Avatar({
+      //   alt: 'clip',
+      //   class: 'message-img',
+      //   srcImg: clipImg,
+      // }),
       form: new Form({
         formClass: 'form',
         inputs: [

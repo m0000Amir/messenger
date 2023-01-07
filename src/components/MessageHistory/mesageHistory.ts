@@ -6,7 +6,7 @@ interface MessageHistoryProps {
   senderName: string
   messageIn: Block[]
   messageOut: Block[]
-  clip: Block
+  clip?: Block
   form: Block
 }
 

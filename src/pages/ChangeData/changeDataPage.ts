@@ -3,12 +3,10 @@ import template from './changeData.hbs';
 import { Block } from '../../utils/Block';
 import Button from '../../components/Button';
 import './changeData.less';
-// import Img from '../../components/Avatar/avatar';
-// import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
-import { focusin, focusout, isValid, submit } from '../../utils/events';
+import { focusin, focusout, isValid } from '../../utils/events';
 import router from '../../utils/Router';
-import { Routes, SigninData, UpdateUserData } from '../../types/types';
+import { Routes, UpdateUserData } from '../../types/types';
 import UserController from '../../controllers/UserController';
 
 export class ChangeDataPage extends Block {
@@ -80,10 +78,10 @@ export class ChangeDataPage extends Block {
         new Input({
           class: 'change_data-input-form',
           spanClass: 'change_data-input-form__title',
-          label: 'Username',
+          label: 'Display name',
           inputClass: 'change_data-input-form__input',
           inputType: 'text',
-          inputName: 'user_name',
+          inputName: 'display_name',
           inputPlaceholder: '',
           events: {
             focusin,
@@ -120,6 +118,7 @@ export class ChangeDataPage extends Block {
     event.preventDefault();
     const inputs = document.getElementsByTagName('input');
     const updateUserData = {};
+    debugger
     if (isValid(inputs)) {
       Array.from(inputs).forEach((input) => {
         updateUserData[input.name] = input.value;
