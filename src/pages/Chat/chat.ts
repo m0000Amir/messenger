@@ -7,7 +7,7 @@ import Form from '../../components/Form';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Link from '../../components/Link';
-import Img from '../../components/Img';
+import Avatar from '../../components/Avatar';
 import { focusin, focusout, submit } from '../../utils/events';
 import clipImg from '../../static/image/clip.svg';
 import './chat.less';
@@ -44,7 +44,7 @@ export class ChatPage extends Block {
       senderName,
       messageIn: messagesIn.map((msg) => new Message({ ...msg })),
       messageOut: messagesOut.map((msg) => new Message({ ...msg })),
-      clip: new Img({
+      clip: new Avatar({
         alt: 'clip',
         class: 'message-img',
         srcImg: clipImg,

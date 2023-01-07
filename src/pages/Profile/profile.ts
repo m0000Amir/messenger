@@ -2,7 +2,7 @@ import Input from '../../components/Input';
 import template from './profile.hbs';
 import { Block } from '../../utils/Block';
 import './profile.less';
-import Img from '../../components/Img';
+import Avatar from '../../components/Avatar';
 import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
 import Link from '../../components/Link';
@@ -11,6 +11,8 @@ import AuthController from '../../controllers/AuthControllers';
 import { Routes, User } from '../../types/types';
 import Router from '../../utils/Router';
 import { withStore } from '../../utils/Store';
+import Popup from '../../components/Popup';
+import UserController from '../../controllers/UserController';
 
 interface ProfileProps extends User {}
 
@@ -31,10 +33,16 @@ export class ProfilePageBase extends Block<ProfileProps> {
 
   init() {
     console.log(this.props);
-    this.children.img = new Img({
+    this.children.img = new Avatar({
       alt: 'logo',
-      class: 'img',
-      srcImg: this.props.avatar ? `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}` : profileLogo,
+      srcImg: this.props.avatar
+        ? `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`
+        : profileLogo,
+      events: {
+        click: () => {
+          (this.children.popup as Popup).show();
+        },
+      },
     });
     this.children.form = new Form({
       formClass: 'fields',
@@ -48,8 +56,6 @@ export class ProfilePageBase extends Block<ProfileProps> {
           inputName: 'email',
           inputPlaceholder: this.props.email,
           readonly: 'readonly',
-
-
         }),
         new Input({
           class: 'profile-input-form',
@@ -132,6 +138,34 @@ export class ProfilePageBase extends Block<ProfileProps> {
       events: {
         click: () => { Router.go(Routes.Chat); },
       },
+    });
+
+    this.children.popup = new Popup({
+      title: 'Upload file',
+      button: new Button({
+        class: 'button-link',
+        label: 'Change',
+        type: 'submit',
+        events: {
+          click: (e: any) => {
+            e.preventDefault();
+            const formData = new FormData();
+            const input: any = document.querySelector('#avatar');
+
+            formData.append('avatar', input?.files[0]);
+            debugger
+            UserController.updateAvatar(formData);
+            (this.children.popup as Popup).hide();
+          },
+        },
+      }),
+      content: new Input({
+        label: '',
+        inputType: 'file',
+        inputPlaceholder: 'file',
+        inputName: 'avatar',
+        class: 'avatar-validated-input',
+      }),
     });
   }
 

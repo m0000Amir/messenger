@@ -10,7 +10,7 @@ export class UserAPI extends BaseAPI {
     return this.http.put('profile', data);
   }
 
-  updateAvater(data: FormData) {
+  updateAvatar(data: FormData) {
     return this.http.put('/profile/avatar', data);
   }
 

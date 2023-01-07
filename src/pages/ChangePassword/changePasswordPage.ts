@@ -3,7 +3,7 @@ import template from './changePassword.hbs';
 import { Block } from '../../utils/Block';
 import Button from '../../components/Button';
 import './changePassword.less';
-import Img from '../../components/Img';
+import Img from '../../components/Avatar/avatar';
 import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
 import { focusin, focusout, submit } from '../../utils/events';

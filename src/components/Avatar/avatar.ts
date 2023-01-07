@@ -1,14 +1,16 @@
 import { Block } from '../../utils/Block';
-import template from './img.hbs';
-import './img.less';
+import template from './avatar.hbs';
+import './avatar.less';
 
 interface ImgProps {
   alt?: string
-  class: string
   srcImg: string
+  events?: {
+    click: (e: Event) => void;
+  };
 }
 
-export class Img extends Block {
+export class Avatar extends Block {
   constructor(props: ImgProps) {
     super(props);
   }

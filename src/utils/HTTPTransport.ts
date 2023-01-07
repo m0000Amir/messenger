@@ -68,13 +68,13 @@ export default class HTTPTransport {
         }
       };
 
-      xhr.onabort = reject;
-      xhr.onerror = reject;
-      xhr.ontimeout = reject;
+      // xhr.onabort = reject;
+      // xhr.onerror = reject;
+      // xhr.ontimeout = reject;
 
-      // xhr.onabort = () => reject({ reason: 'abort' });
-      // xhr.onerror = () => reject({ reason: 'network error' });
-      // xhr.ontimeout = () => reject({ reason: 'timeout' });
+      xhr.onabort = () => reject({ reason: 'abort' });
+      xhr.onerror = () => reject({ reason: 'network error' });
+      xhr.ontimeout = () => reject({ reason: 'timeout' });
 
       // xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -88,7 +88,7 @@ export default class HTTPTransport {
       if (method === Method.Get || !data) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.send(data instanceof FormData ? data : JSON.stringify(data));
       }
     });
   }

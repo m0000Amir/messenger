@@ -1,0 +1,47 @@
+@import "../../styles/variables.less";
+
+.img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 100px;
+  align-self: center;
+
+  font-family: @inter-font;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  &:hover {
+    .img__text {
+      opacity: 1;
+    }
+  }
+
+  &__avatar {
+    align-self: center;
+  }
+  &__text {
+    text-align: center;
+    opacity: 0;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s ease-in-out;
+    display: flex;
+    position: absolute;
+
+    color: @white-color;
+    width: 50px;
+    z-index: 1;
+    margin: 0;
+    font-size: 13px;
+  }
+}

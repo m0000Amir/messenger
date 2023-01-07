@@ -3,8 +3,8 @@ import template from './changeData.hbs';
 import { Block } from '../../utils/Block';
 import Button from '../../components/Button';
 import './changeData.less';
-import Img from '../../components/Img';
-import profileLogo from '../../static/image/profile.svg';
+// import Img from '../../components/Avatar/avatar';
+// import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
 import { focusin, focusout, isValid, submit } from '../../utils/events';
 import router from '../../utils/Router';
@@ -17,11 +17,11 @@ export class ChangeDataPage extends Block {
   }
 
   init() {
-    this.children.img = new Img({
-      alt: 'logo',
-      class: 'img',
-      srcImg: profileLogo,
-    });
+    // this.children.img = new Img({
+    //   alt: 'logo',
+    //   class: 'img',
+    //   srcImg: profileLogo,
+    // });
     this.children.form = new Form({
       formClass: 'change_data-fields',
       inputs: [
