@@ -1,0 +1,18 @@
+<aside class="chats-list">
+    {{{profileLink}}}
+
+    {{{ search }}}
+
+    {{{ addChat }}}
+
+    {{#if isLoaded }}
+        {{#each chats}}
+            {{{this}}}
+        {{/each}}
+
+    {{else}}
+        Loading...
+    {{/if}}
+
+    {{{ addChatPopup }}}
+</aside>

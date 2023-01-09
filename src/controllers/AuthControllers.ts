@@ -15,7 +15,8 @@ export class AuthController {
       router.go(Routes.Chat);
     } catch (e) {
       store.set('user.error', e);
-      alert('Error during signing up');
+      // alert('Error during signing up');
+      console.error(e);
     }
   }
 
@@ -43,42 +44,10 @@ export class AuthController {
     }
   }
 
-  // async updateUsername(username: string) {
-  //   const { username: oldUsername } = store.getState().user;
-  //
-  //   store.set('user.name', username);
-  //
-  //   const result = await this.api.update({ username });
-  //
-  //   if (!result) {
-  //     store.set('user.name', oldUsername);
-  //   }
-  // }
-
-  // async fetchUser() {
-  //   try {
-  //     const user = await this.api.read();
-  //
-  //     store.set('user', user);
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // }
   async fetchUser() {
     const user = await this.api.read();
-
     store.set('user', user);
   }
 }
-
-// async fetchChats() {
-//   try {
-//     const chats = await this.api.read();
-//
-//     store.set('chats', chats);
-//   } catch (e) {
-//     alert('Error during user fetch');
-//   }
-// }
 
 export default new AuthController();

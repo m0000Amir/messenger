@@ -135,7 +135,6 @@ export class RegistrationPage extends Block {
       Array.from(inputs).forEach((input) => {
         signUpData[input.name] = input.value;
       });
-      debugger
       AuthController.signup(signUpData as SignupData);
     }
   }

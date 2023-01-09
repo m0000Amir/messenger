@@ -48,3 +48,15 @@ export enum Routes {
   Error404 = '/error404',
   Error500 = '/error500',
 }
+
+export interface ChatInfo {
+  id: number;
+  title: string;
+  avatar: string;
+  unread_count: number;
+  last_message: {
+    user: User,
+    time: string;
+    content: string;
+  }
+}

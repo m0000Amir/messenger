@@ -1,0 +1,67 @@
+@import "../../styles/variables";
+
+.chats-list  {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  height: 100%;
+  background: @background-color;
+}
+
+.link {
+  padding: 5px;
+  text-decoration: underline;
+  align-self: end;
+  cursor: pointer;
+  color: @grey-color;
+  margin: 4px 0 24px;
+  font-size: 12px;
+}
+
+.add-chat-button {
+  text-decoration: underline;
+  align-self: end;
+  cursor: pointer;
+  color: @grey-color;
+  font-size: 12px;
+  border: none;
+}
+
+.search {
+  border: 1px solid silver;
+  height: 20px;
+  border-radius: 5px;
+  width: 95%;
+  background-color: @background-color;
+  font-size: 12px;
+  line-height: 12px;
+  &::placeholder {
+    color: @grey-color;
+  }
+}
+
+.name {
+  color: @black-color;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+  width: 170px;
+}
+
+.add-chat-input {
+  border:  none;
+  border-bottom: 1px solid @blue-color;
+
+  height: 25px;
+  //text-align: end;
+  //align-self: flex-end;
+  flex-grow: 1;
+  //outline: none;
+  padding: 0 5px 0 5px;
+  &::placeholder {
+    color: @grey-color;
+  }
+  *:focus {
+    outline: none;
+  }
+}

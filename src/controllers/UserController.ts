@@ -37,4 +37,4 @@ export class UserController {
   }
 }
 
-export default new UserController(new UserAPI());
+export default new UserController();

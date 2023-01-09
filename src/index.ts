@@ -3,7 +3,7 @@ import RegistrationPage from './pages/Registration';
 import ProfilePage from './pages/Profile';
 import Error404Page from './pages/Error/error404';
 import Error500Page from './pages/Error/error500';
-import ChatPage from './pages/Chat';
+import MessengerPage from './pages/Messenger';
 import ChangePasswordPage from './pages/ChangePassword';
 import ChangeDataPage from './pages/ChangeData';
 import Router from './utils/Router';
@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Index, LoginPage)
     .use(Routes.Registration, RegistrationPage)
     .use(Routes.Profile, ProfilePage)
-    .use(Routes.Chat, ChatPage)
+    .use(Routes.Chat, MessengerPage)
     .use(Routes.ChangePassword, ChangePasswordPage)
     .use(Routes.ChangeData, ChangeDataPage)
     .use(Routes.Error404, Error404Page)

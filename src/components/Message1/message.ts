@@ -3,16 +3,18 @@ import template from './message.hbs';
 import './message.less';
 
 interface MessageProps {
-  content: string;
-  isMine: boolean;
+  messageClass: string
+  text: string
+  timeClass: string
+  time: string
 }
 
-export class Message extends Block<MessageProps> {
+export class Message extends Block {
   constructor(props: MessageProps) {
     super(props);
   }
 
-  protected render(): DocumentFragment {
+  render() {
     return this.compile(template, { ...this.props });
   }
 }

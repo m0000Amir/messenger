@@ -118,7 +118,6 @@ export class ChangeDataPage extends Block {
     event.preventDefault();
     const inputs = document.getElementsByTagName('input');
     const updateUserData = {};
-    debugger
     if (isValid(inputs)) {
       Array.from(inputs).forEach((input) => {
         updateUserData[input.name] = input.value;

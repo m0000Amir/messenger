@@ -1,10 +1,8 @@
 import { set } from './helpers';
 import EventBus from './EventBus';
 import { Block } from './Block';
-import { SigninData, SignupData, User } from '../types/types';
-// import { User } from '../api/AuthAPI';
-// import { ChatInfo } from '../api/ChatsAPI';
-// import { Message } from '../controllers/MessagesController';
+import { ChatInfo, User } from '../types/types';
+import { Message } from '../controllers/MessagesController';
 
 export enum StoreEvents {
   Updated = 'updated'
@@ -12,8 +10,8 @@ export enum StoreEvents {
 
 interface State {
   user: User;
-  chats: any // ChatInfo[];
-  messages: any // Record<number, Message[]>;
+  chats: ChatInfo[];
+  messages: Record<number, Message[]>;
   selectedChat?: number;
 }
 
@@ -38,7 +36,6 @@ export function withStore<SP>(mapStateToProps: (state: State) => SP) {
 
     return class WithStore extends Component {
       constructor(props: Omit<P, keyof SP>) {
-
         let previousState = mapStateToProps(store.getState());
 
         super({ ...(props as P), ...previousState });
@@ -48,7 +45,7 @@ export function withStore<SP>(mapStateToProps: (state: State) => SP) {
           // debugger
           previousState = stateProps;
 
-          console.log(stateProps);
+          // console.log(stateProps);
 
           this.setProps({ ...stateProps });
         });
