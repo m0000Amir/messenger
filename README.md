@@ -31,7 +31,7 @@ https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=1%3
 ---
 
 # Ссылка на pull-request:
-https://github.com/m0000Amir/middle.messenger.praktikum.yandex/pull/2
+https://github.com/m0000Amir/middle.messenger.praktikum.yandex/pull/3
 
 ---
 
