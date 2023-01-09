@@ -106,8 +106,24 @@ class ChatsListBase extends Block<ChatsListProps> {
   }
 }
 
-const withChats = withStore((state) => (
-  { chats: [...(state.chats || [])] }
-));
+const withChats = withStore((state) => {
+  const selectedChatId = state.selectedChat;
+
+  if (!selectedChatId) {
+    return {
+      messages: [],
+      chats: [...(state.chats || [])],
+      selectedChat: undefined,
+      userId: state.user.id,
+    };
+  }
+
+  return {
+    messages: (state.messages || {})[selectedChatId] || [],
+    chats: [...(state.chats || [])],
+    selectedChat: state.selectedChat,
+    userId: state.user.id,
+  };
+});
 
 export const ChatsList = withChats(ChatsListBase as any);
