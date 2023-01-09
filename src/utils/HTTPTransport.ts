@@ -51,12 +51,12 @@ export default class HTTPTransport {
   );
 
   put: HTTPMethod = (url, options = {}) => (
-    this.request(url, { ...options, method: Method.Put }, options.timeout)
+    this.request(this.endpoint + url, { ...options, method: Method.Put }, options.timeout)
   );
 
-  // delete: HTTPMethod = (url, options = {}) => (
-  //   this.request(url, { ...options, method: Method.Delete }, options.timeout)
-  // );
+  delete: HTTPMethod = (url, options = {}) => (
+    this.request(this.endpoint + url, { ...options, method: Method.Delete }, options.timeout)
+  );
 
   //
   // public get<Response>(path = '/'): Promise<Response> {
@@ -84,12 +84,12 @@ export default class HTTPTransport {
   //   });
   // }
   //
-  public delete<Response>(path: string, data?: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
-      method: Method.Delete,
-      data,
-    });
-  }
+  // public delete<Response>(path: string, data?: unknown): Promise<Response> {
+  //   return this.request<Response>(this.endpoint + path, {
+  //     method: Method.Delete,
+  //     data,
+  //   });
+  // }
 
   private request<Response>(url: string, options: Options = { method: Method.Get }, timeout = 5000): Promise<Response> {
     const { method, data } = options;

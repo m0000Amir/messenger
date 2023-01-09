@@ -7,11 +7,11 @@ export class ChatsAPI extends BaseAPI {
   }
 
   create(title: string) {
-    return this.http.post('/', { title });
+    return this.http.post('/', { data: { title } });
   }
 
   delete(id: number): Promise<unknown> {
-    return this.http.delete('/', { chatId: id });
+    return this.http.delete('/', { data: { chatId: id } });
   }
 
   read(): Promise<ChatInfo[]> {
