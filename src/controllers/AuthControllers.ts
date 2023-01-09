@@ -22,6 +22,7 @@ export class AuthController {
 
   async signin(signData: SigninData) {
     try {
+      debugger
       await this.api.signin(signData);
 
       await this.fetchUser();

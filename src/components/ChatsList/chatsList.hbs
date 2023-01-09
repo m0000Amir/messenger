@@ -5,14 +5,18 @@
 
     {{{ addChat }}}
 
-    {{#if isLoaded }}
-        {{#each chats}}
-            {{{this}}}
-        {{/each}}
+    <div class="chats">
+        {{#if isLoaded }}
+            {{#each chats}}
+                {{{this}}}
+            {{/each}}
 
-    {{else}}
-        Loading...
-    {{/if}}
+        {{else}}
+            Loading...
+        {{/if}}
+    </div>
+
+
 
     {{{ addChatPopup }}}
 </aside>

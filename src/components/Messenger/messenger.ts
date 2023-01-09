@@ -3,7 +3,8 @@ import template from './messenger.hbs';
 import Message from '../Message';
 import { Input } from '../Input/input';
 import Button from '../../components/Button';
-import MessagesController, { Message as MessageInfo } from '../../controllers/MessagesController';
+import MessagesController from '../../controllers/MessagesController';
+import { Message as MessageInfo } from '../../types/types';
 import ChatsController from '../../controllers/ChatsController';
 import { withStore } from '../../utils/Store';
 import { focusin, focusout } from '../../utils/events';
@@ -82,6 +83,15 @@ class MessengerBase extends Block<MessengerProps> {
         },
       },
     });
+    this.children.deleteChatButton = new Button({
+      label: 'delete chat',
+      class: 'add-button',
+      events: {
+        click: () => {
+          (this.children.deleteChatPopup as Popup).show();
+        },
+      },
+    });
 
     this.children.addUserPopup = new Popup({
       title: 'Add User',
@@ -94,13 +104,11 @@ class MessengerBase extends Block<MessengerProps> {
             e.preventDefault();
             const input: any = document.querySelector('#addUserId');
             const userId = input.value;
-            debugger
-            console.log('userId', userId);
             if (userId !== '') {
               ChatsController.addUserToChat(this.props.selectedChat as number, userId);
               input.value = '';
-              (this.children.addUserPopup as Popup).hide();
             }
+            (this.children.addUserPopup as Popup).hide();
           },
         },
       }),
@@ -110,6 +118,37 @@ class MessengerBase extends Block<MessengerProps> {
         inputPlaceholder: 'user Id',
         inputName: 'addUserId',
         class: 'add-user-validated-input',
+      }),
+    });
+
+    this.children.deleteChatPopup = new Popup({
+      title: 'Delete Chat',
+      button: new Button({
+        class: 'button-link',
+        label: 'Delete',
+        type: 'submit',
+        events: {
+          click: (e: any) => {
+            e.preventDefault();
+            const input: any = document.querySelector('#deleteChatId');
+            const chatId = input.value;
+
+            if (chatId !== '') {
+              ChatsController.delete(
+                chatId,
+              );
+              input.value = '';
+            }
+            (this.children.deleteChatPopup as Popup).hide();
+          },
+        },
+      }),
+      content: new Input({
+        label: '',
+        inputType: 'text',
+        inputPlaceholder: 'chat Id',
+        inputName: 'deleteChatId',
+        class: 'delete-user-validated-input',
       }),
     });
 
@@ -131,8 +170,8 @@ class MessengerBase extends Block<MessengerProps> {
                 userId,
               );
               input.value = '';
-              (this.children.deleteUserPopup as Popup).hide();
             }
+            (this.children.deleteUserPopup as Popup).hide();
           },
         },
       }),
