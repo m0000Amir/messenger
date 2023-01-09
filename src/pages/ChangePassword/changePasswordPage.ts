@@ -8,6 +8,7 @@ import { focusin, focusout, isValid } from '../../utils/events';
 import router from '../../utils/Router';
 import { Routes, UpdatePassword } from '../../types/types';
 import UserController from '../../controllers/UserController';
+import Router from '../../utils/Router';
 
 export class ChangePasswordPage extends Block {
   constructor() {
@@ -67,6 +68,13 @@ export class ChangePasswordPage extends Block {
           click: (e) => { this.onSubmit(e); },
         },
       }),
+    });
+    this.children.back = new Button({
+      label: '<-',
+      class: 'button-back',
+      events: {
+        click: () => { Router.go(Routes.Profile); },
+      },
     });
   }
 
