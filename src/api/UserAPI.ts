@@ -7,7 +7,6 @@ export class UserAPI extends BaseAPI {
   }
 
   updateUser(data: UpdateUserData) {
-    debugger
     return this.http.put('/profile', data);
   }
 

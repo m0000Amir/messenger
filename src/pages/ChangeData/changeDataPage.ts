@@ -15,11 +15,6 @@ export class ChangeDataPage extends Block {
   }
 
   init() {
-    // this.children.img = new Img({
-    //   alt: 'logo',
-    //   class: 'img',
-    //   srcImg: profileLogo,
-    // });
     this.children.form = new Form({
       formClass: 'change_data-fields',
       inputs: [
@@ -120,6 +115,7 @@ export class ChangeDataPage extends Block {
     const updateUserData = {};
     if (isValid(inputs)) {
       Array.from(inputs).forEach((input) => {
+        // @ts-ignore
         updateUserData[input.name] = input.value;
       });
       UserController.updateUser(updateUserData as UpdateUserData);

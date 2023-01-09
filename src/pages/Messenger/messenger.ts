@@ -14,11 +14,10 @@ export class MessengerPage extends Block {
   protected init() {
     this.children.chatsList = new ChatsList({ isLoaded: false });
 
-    // todo: вернуть
     this.children.messenger = new Messenger({});
 
+    // @ts-ignore
     ChatsController.fetchChats().finally(() => {
-      // debugger
       (this.children.chatsList as Block).setProps({
         isLoaded: true,
       });

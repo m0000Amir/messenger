@@ -5,7 +5,7 @@ import './login.less';
 import Input from '../../components/Input';
 import Link from '../../components/Link';
 import Form from '../../components/Form';
-import { focusin, focusout, isValid, submit } from '../../utils/events';
+import { focusin, focusout, isValid } from '../../utils/events';
 import { Routes, SigninData } from '../../types/types';
 import AuthController from '../../controllers/AuthControllers';
 
@@ -80,21 +80,16 @@ export class LoginPage extends Block {
   }
 
   onSubmit(event: Event) {
-    // debugger;
-    // submit(e);
     event.preventDefault();
     const inputs = document.getElementsByTagName('input');
     const signInData = {};
     if (isValid(inputs)) {
       Array.from(inputs).forEach((input) => {
+        // @ts-ignore
         signInData[input.name] = input.value;
       });
       AuthController.signin(signInData as SigninData);
     }
-    // Array.from(inputs).forEach((input) => {
-    //   data[input.name] = input.value;
-    // });
-    // AuthController.signin(data as SigninData);
   }
 
   render() {

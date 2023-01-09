@@ -76,6 +76,7 @@ export class ChangePasswordPage extends Block {
     const updatePassword = {};
     if (isValid(inputs)) {
       Array.from(inputs).forEach((input) => {
+        // @ts-ignore
         updatePassword[input.name] = input.value;
       });
       UserController.updatePassword(updatePassword as UpdatePassword);

@@ -21,7 +21,6 @@ class ChatBase extends Block<ChatProps> {
   }
 
   protected render(): DocumentFragment {
-    // debugger
     return this.compile(
       template,
       {

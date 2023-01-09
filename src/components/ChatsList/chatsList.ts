@@ -11,9 +11,6 @@ import Input from '../Input';
 import Button from '../Button';
 import Popup from '../Popup';
 
-// import MessagesController from '../../controllers/MessagesController';
-// import { Link } from '../Link';
-
 interface ChatsListProps {
   chats: ChatInfo[];
   isLoaded: boolean;
@@ -23,6 +20,7 @@ class ChatsListBase extends Block<ChatsListProps> {
   constructor(props: ChatsListProps) {
     super(props);
   }
+
   // chat-page__dialogues_search
   protected init() {
     this.children.search = new Form({
@@ -63,7 +61,7 @@ class ChatsListBase extends Block<ChatsListProps> {
         events: {
           click: (e: any) => {
             e.preventDefault();
-            const input: any = document.querySelector("#chatName");
+            const input: any = document.querySelector('#chatName');
             const chatName = input.value;
 
             if (chatName !== '') {
@@ -85,7 +83,7 @@ class ChatsListBase extends Block<ChatsListProps> {
     });
   }
 
-  protected componentDidUpdate(oldProps: ChatsListProps, newProps: ChatsListProps): boolean {
+  protected componentDidUpdate(newProps: ChatsListProps): boolean {
     this.children.chats = this.createChats(newProps);
     // debugger
 
@@ -93,18 +91,14 @@ class ChatsListBase extends Block<ChatsListProps> {
   }
 
   private createChats(props: ChatsListProps) {
-    // debugger
-    return props.chats.map((data) => {
-      // debugger
-      return new Chat({
-        ...data,
-        events: {
-          click: () => {
-            ChatsController.selectChat(data.id);
-          },
+    return props.chats.map((data) => new Chat({
+      ...data,
+      events: {
+        click: () => {
+          ChatsController.selectChat(data.id);
         },
-      });
-    });
+      },
+    }));
   }
 
   protected render(): DocumentFragment {

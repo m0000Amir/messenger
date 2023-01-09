@@ -20,10 +20,9 @@ export class Block<Props extends Record<string, any> = any> {
   private _element: HTMLElement | null = null;
 
   /** JSDoc
-   * @param {string} tagName
-   * @param {Object} props
    *
    * @returns {void}
+   * @param propsWithChildren
    */
 
   constructor(propsWithChildren: Props) {
@@ -112,7 +111,8 @@ export class Block<Props extends Record<string, any> = any> {
     }
   }
 
-  protected componentDidUpdate(oldProps: Props, newProps: Props) {
+  // @ts-ignore
+  protected componentDidUpdate(oldProps?: Props, newProps?: Props) {
     return true;
   }
 
@@ -150,6 +150,7 @@ export class Block<Props extends Record<string, any> = any> {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
+      // @ts-ignore
       contextAndStubs[name] = `<div data-id='${component.id}'></div>`;
       if (Array.isArray(component)) {
         contextAndStubs[name] = component.map(
@@ -178,7 +179,7 @@ export class Block<Props extends Record<string, any> = any> {
       stub.replaceWith(component.getContent()!);
     };
 
-    Object.entries(this.children).forEach(([_, component]) => {
+    Object.entries(this.children).forEach(([, component]) => {
       if (Array.isArray(component)) {
         component.forEach(replaceStub);
       } else {
@@ -218,8 +219,7 @@ export class Block<Props extends Record<string, any> = any> {
     const { events = {} } = this.props as Props & {
       events: Record<string, () => void>;
     };
-    Object.keys(events).forEach((eventName) =>
-      this._element?.removeEventListener(eventName, events[eventName]));
+    Object.keys(events).forEach((eventName) => this._element?.removeEventListener(eventName, events[eventName]));
   }
 
   public show() {

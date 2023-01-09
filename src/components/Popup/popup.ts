@@ -7,7 +7,6 @@ interface IPopup {
   content?: Block;
   button: Block;
   close?: Block;
-  // className?: string;
   events?: {
     submit: (e: SubmitEvent) => void;
   };

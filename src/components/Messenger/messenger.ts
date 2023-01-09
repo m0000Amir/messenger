@@ -58,12 +58,8 @@ class MessengerBase extends Block<MessengerProps> {
       events: {
         click: () => {
           console.log('click');
-          // debugger
           const menuPopup = document.querySelector('.menu-popup');
           (menuPopup as HTMLElement).classList.toggle('visible');
-
-          // const settingsPopup = document.querySelector(".settings-popup");
-          // (settingsPopup as HTMLElement).classList.toggle("visible");
         },
       },
     });
@@ -98,7 +94,6 @@ class MessengerBase extends Block<MessengerProps> {
             e.preventDefault();
             const input: any = document.querySelector('#addUserId');
             const userId = input.value;
-            // onSubmit(e, "add-user-validated-input");
             console.log('userId', userId);
             if (userId !== '') {
               ChatsController.addUserToChat(this.props.selectedChat as number, userId);
@@ -126,7 +121,7 @@ class MessengerBase extends Block<MessengerProps> {
         events: {
           click: (e: any) => {
             e.preventDefault();
-            const input: any = document.querySelector("#deleteUserId");
+            const input: any = document.querySelector('#deleteUserId');
             const userId = input.value;
 
             if (userId !== '') {
@@ -150,7 +145,7 @@ class MessengerBase extends Block<MessengerProps> {
     });
   }
 
-  protected componentDidUpdate(oldProps: MessengerProps, newProps: MessengerProps): boolean {
+  protected componentDidUpdate(newProps: MessengerProps): boolean {
     this.children.messages = this.createMessages(newProps);
 
     return true;

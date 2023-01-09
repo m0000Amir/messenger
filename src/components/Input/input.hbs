@@ -1,14 +1,13 @@
 <div class="{{ class }}">
     <span class="{{ spanClass }}">{{ label }}</span>
-
     <input
-            class="{{ inputClass }}"
-            type="{{ inputType }}"
-            name="{{ inputName }}"
-            id="{{ inputName }}"
-            placeholder="{{ inputPlaceholder }}"
-            value="{{ value }}"
-            {{#if readonly}} {{readonly}}{{/if }}
+        class="{{ inputClass }}"
+        type="{{ inputType }}"
+        name="{{ inputName }}"
+        id="{{ inputName }}"
+        placeholder="{{ inputPlaceholder }}"
+        value="{{ value }}"
+        {{#if readonly}} {{readonly}}{{/if }}
     />
 
     <span class="input-error">{{ error }}</span>
