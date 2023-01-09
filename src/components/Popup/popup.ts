@@ -1,6 +1,6 @@
-import { Block } from "../../utils/Block";
-import template from "./popup.hbs";
-import "./popup.less";
+import { Block } from '../../utils/Block';
+import template from './popup.hbs';
+import './popup.less';
 
 interface IPopup {
   title: string;
