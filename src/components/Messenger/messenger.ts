@@ -129,6 +129,7 @@ class MessengerBase extends Block<MessengerProps> {
         type: 'submit',
         events: {
           click: (e: any) => {
+            debugger
             e.preventDefault();
             const input: any = document.querySelector('#deleteChatId');
             const chatId = input.value;

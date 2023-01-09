@@ -51,11 +51,11 @@ export default class HTTPTransport {
   );
 
   put: HTTPMethod = (url, options = {}) => (
-    this.request(url, { ...options, method: Method.Put }, options.timeout)
+    this.request(this.endpoint + url, { ...options, method: Method.Put }, options.timeout)
   );
 
   delete: HTTPMethod = (url, options = {}) => (
-    this.request(url, { ...options, method: Method.Delete }, options.timeout)
+    this.request(this.endpoint + url, { ...options, method: Method.Delete }, options.timeout)
   );
 
   //
