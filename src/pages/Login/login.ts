@@ -5,7 +5,9 @@ import './login.less';
 import Input from '../../components/Input';
 import Link from '../../components/Link';
 import Form from '../../components/Form';
-import { focusin, focusout, submit } from '../../utils/events';
+import { focusin, focusout, isValid } from '../../utils/events';
+import { Routes, SigninData } from '../../types/types';
+import AuthController from '../../controllers/AuthControllers';
 
 export class LoginPage extends Block {
   constructor() {
@@ -13,6 +15,7 @@ export class LoginPage extends Block {
   }
 
   init() {
+    // @ts-ignore
     this.children.form = new Form({
       formClass: 'fields',
       inputs: [
@@ -48,31 +51,45 @@ export class LoginPage extends Block {
         label: 'Sign in',
         class: 'button-link',
         type: 'submit',
-        events: { click: submit },
+        events: {
+          click: (e) => this.onSubmit(e),
+        },
       }),
-      events: { submit },
     });
     this.children.link = new Link({
       class: 'text-link',
-      href: './registration',
+      href: Routes.Registration,
       label: 'Sign Up',
     });
     this.children.chatLink = new Link({
       class: 'text-link',
-      href: './chat',
+      href: Routes.Chat,
       label: 'Chat',
     });
     this.children.error404Link = new Link({
       class: 'text-link',
-      href: './error404',
+      href: Routes.Error404,
       label: '404',
     });
 
     this.children.error500Link = new Link({
       class: 'text-link',
-      href: './error500',
+      href: Routes.Error500,
       label: '500',
     });
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+    const inputs = document.getElementsByTagName('input');
+    const signInData = {};
+    if (isValid(inputs)) {
+      Array.from(inputs).forEach((input) => {
+        // @ts-ignore
+        signInData[input.name] = input.value;
+      });
+      AuthController.signin(signInData as SigninData);
+    }
   }
 
   render() {

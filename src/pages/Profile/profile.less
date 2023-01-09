@@ -1,4 +1,9 @@
 @import "../../styles/variables";
+.profile-page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
 .profile-page__wrapper {
   height: 100vh;
@@ -6,6 +11,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .profile {
@@ -55,10 +61,9 @@
   }
 }
 
-.profile-button {
+.profile-link {
   display: flex;
   flex-direction: column;
-
   width: 510px;
   font-family: @inter-font;
   font-style: normal;
@@ -66,21 +71,24 @@
   font-size: 11px;
   line-height: 11px;
   cursor: pointer;
-  margin: 14px 0 0;
-  &__text {
-    text-decoration: none;
-    height: 20px;
-    color: @blue-color;
+  text-decoration: none;
+  height: 25px;
+  color: @blue-color;
+  margin: 5px 0 0;
+}
 
-    margin-top: 5px;
-    &-exit {
-      height: 30px;
-      color: red;
-      text-decoration: none;
-      margin-top: 5px;
-    }
-  }
-
+.button-exit {
+  width: 50px;
+  color: @red_color;
+  font-family: Inter, serif;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
 }
 
 

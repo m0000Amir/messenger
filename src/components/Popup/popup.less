@@ -1,0 +1,53 @@
+@import "../../styles/variables.less";
+
+.popup-block {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.popup-background {
+  background-color: @blue-color;
+  opacity: 0.1;
+  width: 100%;
+  height: 100%;
+}
+
+.popup {
+  width: 280px;
+  height: 180px;
+  background-color: @white-color;
+  padding: 40px 30px 36px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.popup-title {
+  margin: 0;
+  color: @grey-color;
+}
+
+input[type="file" i]::-webkit-file-upload-button {
+  border-radius: 12px;
+  border: none;
+  font-family: @inter-font;
+  font-style: inherit;
+  font-weight: 500;
+  font-size: 15px;
+
+  margin: 0 10px;
+  color: @blue-color;
+  background-color: transparent;
+}

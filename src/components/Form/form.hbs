@@ -1,5 +1,7 @@
 <form class="{{ formClass }}">
-    {{{ inputs }}}
+    {{#each inputs}}
+        {{{this}}}
+    {{/each}}
 
     <div class="{{ buttonClass }}">
         {{{ button }}}

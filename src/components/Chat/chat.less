@@ -1,0 +1,45 @@
+@import "../../styles/variables";
+
+.chat {
+  display: flex;
+  height: 50px;
+  box-sizing: border-box;
+  border-bottom: 1px solid @light_grey-color;
+  cursor: pointer;
+  flex-direction: column;
+  padding: 5px;
+
+  &--selected {
+    background: @blue-chat-color;
+  }
+}
+
+.chat__badge {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-left: auto;
+  border-radius: 50%;
+  background: @blue-color;
+  font-size: 10px;
+  text-align: center;
+  line-height: 15px;
+  color: @grey-color;
+
+  vertical-align: middle;
+}
+
+.content {
+  color: @grey-color;
+  font-size: 12px;
+  display: flex;
+  &-message {
+    max-width: 150px;
+    border-radius: 6px;
+  }
+}
+
+.from {
+  color: @black-color;
+  margin-right: 4px;
+}
