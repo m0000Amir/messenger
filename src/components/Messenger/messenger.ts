@@ -94,6 +94,7 @@ class MessengerBase extends Block<MessengerProps> {
             e.preventDefault();
             const input: any = document.querySelector('#addUserId');
             const userId = input.value;
+            debugger
             console.log('userId', userId);
             if (userId !== '') {
               ChatsController.addUserToChat(this.props.selectedChat as number, userId);
