@@ -20,13 +20,9 @@
   align-items: center;
   display: flex;
   overflow: hidden;
-  &:hover {
-    .img__text {
-      opacity: 1;
-    }
-  }
 
   &__avatar {
+    width: 120px;
     align-self: center;
   }
   &__text {
@@ -38,10 +34,15 @@
     display: flex;
     position: absolute;
 
-    color: @white-color;
+    color: @grey-color;
     width: 50px;
     z-index: 1;
     margin: 0;
     font-size: 13px;
+  }
+  &:hover {
+    .img__text {
+      opacity: 1;
+    }
   }
 }
