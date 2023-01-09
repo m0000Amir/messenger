@@ -2,7 +2,7 @@ import { Block } from '../../utils/Block';
 import template from './chatsList.hbs';
 import Chat from '../Chat';
 import { withStore } from '../../utils/Store';
-import { ChatInfo, Routes } from '../../types/types';
+import { ChatInfo, Routes, Message } from '../../types/types';
 import ChatsController from '../../controllers/ChatsController';
 import Link from '../../components/Link';
 import './chatsList.less';
@@ -12,6 +12,7 @@ import Button from '../Button';
 import Popup from '../Popup';
 
 interface ChatsListProps {
+  messages?: Message;
   chats: ChatInfo[];
   isLoaded: boolean;
 }
