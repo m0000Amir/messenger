@@ -8,7 +8,7 @@ export default class EventBus {
       this.listeners[event] = [];
     }
 
-    this.listeners[event].push(callback);
+    this.listeners[event]?.push(callback);
   }
 
   public off(event: string, callback: Handler): void {

@@ -1,0 +1,13 @@
+<div class="chat {{#if isSelected }}chat--selected{{/if}}">
+    <p class="name">{{ title }}</p>
+
+    <div class="content">
+        {{{isMine}}}
+        <div class="content-message"> {{ last_message.content }}</div>
+        {{#if unread_count }}
+            <span class="chat__badge">{{unread_count}}</span>
+        {{/if}}
+    </div>
+
+
+</div>

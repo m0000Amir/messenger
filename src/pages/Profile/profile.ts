@@ -2,21 +2,46 @@ import Input from '../../components/Input';
 import template from './profile.hbs';
 import { Block } from '../../utils/Block';
 import './profile.less';
-import Img from '../../components/Img';
+import Avatar from '../../components/Avatar';
 import profileLogo from '../../static/image/profile.svg';
 import Form from '../../components/Form';
 import Link from '../../components/Link';
+import Button from '../../components/Button';
+import AuthController from '../../controllers/AuthControllers';
+import { Routes, User } from '../../types/types';
+import Router from '../../utils/Router';
+import { withStore } from '../../utils/Store';
+import Popup from '../../components/Popup';
+import UserController from '../../controllers/UserController';
 
-export class Profile extends Block {
-  constructor() {
-    super({});
+interface ProfileProps extends User {}
+
+export class ProfilePageBase extends Block<ProfileProps> {
+  // constructor(props: ProfileProps) {
+  //   super(props);
+  // }
+
+  async componentDidMount() {
+    await AuthController.fetchUser();
   }
 
+  // public setProps = (nextProps: any) => {
+  //   debugger
+  //   super.setProps(nextProps);
+  // };
+
   init() {
-    this.children.img = new Img({
+    console.log(this.props);
+    this.children.img = new Avatar({
       alt: 'logo',
-      class: 'img',
-      srcImg: profileLogo,
+      srcImg: this.props.avatar
+        ? `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`
+        : profileLogo,
+      events: {
+        click: () => {
+          (this.children.popup as Popup).show();
+        },
+      },
     });
     this.children.form = new Form({
       formClass: 'fields',
@@ -28,8 +53,8 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'email',
           inputName: 'email',
-          inputPlaceholder: 'pochta@yandex.ru',
-
+          inputPlaceholder: this.props.email,
+          readonly: 'readonly',
         }),
         new Input({
           class: 'profile-input-form',
@@ -38,7 +63,8 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'text',
           inputName: 'login',
-          inputPlaceholder: 'AMukhtarov',
+          inputPlaceholder: this.props.login,
+          readonly: 'readonly',
         }),
         new Input({
           class: 'profile-input-form',
@@ -47,7 +73,8 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'text',
           inputName: 'first_name',
-          inputPlaceholder: 'Amir',
+          inputPlaceholder: this.props.first_name,
+          readonly: 'readonly',
         }),
         new Input({
           class: 'profile-input-form',
@@ -56,16 +83,18 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'text',
           inputName: 'second_name',
-          inputPlaceholder: 'Mukhtarov',
+          inputPlaceholder: this.props.second_name,
+          readonly: 'readonly',
         }),
         new Input({
           class: 'profile-input-form',
           spanClass: 'profile-input-form__title',
-          label: 'Username',
+          label: 'Display name',
           inputClass: 'profile-input-form__input',
           inputType: 'text',
-          inputName: 'user_name',
-          inputPlaceholder: 'Amir',
+          inputName: 'display_name',
+          inputPlaceholder: this.props.display_name ? this.props.display_name : this.props.first_name,
+          readonly: 'readonly',
         }),
         new Input({
           class: 'profile-input-form',
@@ -74,29 +103,167 @@ export class Profile extends Block {
           inputClass: 'profile-input-form__input',
           inputType: 'tel',
           inputName: 'phone',
-          inputPlaceholder: '+7 (999) 123 45 67',
+          inputPlaceholder: this.props.phone,
+          readonly: 'readonly',
         }),
       ],
-      buttonClass: 'profile-button',
     });
     this.children.changeData = new Link({
-      class: 'profile-button__text',
-      href: './change-data',
+      class: 'profile-link',
+      href: Routes.ChangeData,
       label: 'Change Data',
     });
     this.children.changePassword = new Link({
-      class: 'profile-button__text',
-      href: './change-password',
+      class: 'profile-link',
+      href: Routes.ChangePassword,
       label: 'Change Password',
     });
-    this.children.exit = new Link({
-      class: 'profile-button__text-exit',
-      href: './chat',
+    // this.children.exit = new Link({
+    //   class: 'profile-button__text-exit',
+    //   href: '/',
+    //   label: 'Exit',
+    // });
+    this.children.exit = new Button({
       label: 'Exit',
+      class: 'button-exit',
+      events: {
+        click: () => {
+          AuthController.logout();
+        },
+      },
     });
+    this.children.back = new Button({
+      label: '<-',
+      class: 'button-back',
+      events: {
+        click: () => { Router.go(Routes.Chat); },
+      },
+    });
+
+    this.children.popup = new Popup({
+      title: 'Upload file',
+      button: new Button({
+        class: 'button-link',
+        label: 'Change',
+        type: 'submit',
+        events: {
+          click: (e: any) => {
+            e.preventDefault();
+            const formData = new FormData();
+            const input: any = document.querySelector('#avatar');
+
+            formData.append('avatar', input?.files[0]);
+            // debugger
+            UserController.updateAvatar(formData);
+            (this.children.popup as Popup).hide();
+          },
+        },
+      }),
+      content: new Input({
+        label: '',
+        inputType: 'file',
+        inputPlaceholder: 'file',
+        inputName: 'avatar',
+        class: 'avatar-validated-input',
+      }),
+    });
+  }
+
+  componentDidUpdate(
+    oldProps: ProfileProps,
+    newProps: ProfileProps,
+  ): boolean {
+    /**
+     * Обновляем детей
+     */
+    (this.children.img as Avatar).setProps({
+      srcImg: this.props.avatar
+        ? `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`
+        : profileLogo,
+    });
+
+    this.children.form = new Form({
+      inputs: [
+        new Input({
+          class: 'profile-input-form',
+          spanClass: 'profile-input-form__title',
+          label: 'Email',
+          inputClass: 'profile-input-form__input',
+          inputType: 'email',
+          inputName: 'email',
+          inputPlaceholder: this.props.email,
+          readonly: 'readonly',
+        }),
+        new Input({
+          class: 'profile-input-form',
+          spanClass: 'profile-input-form__title',
+          label: 'Login',
+          inputClass: 'profile-input-form__input',
+          inputType: 'text',
+          inputName: 'login',
+          inputPlaceholder: this.props.login,
+          readonly: 'readonly',
+        }),
+        new Input({
+          class: 'profile-input-form',
+          spanClass: 'profile-input-form__title',
+          label: 'First name',
+          inputClass: 'profile-input-form__input',
+          inputType: 'text',
+          inputName: 'first_name',
+          inputPlaceholder: this.props.first_name,
+          readonly: 'readonly',
+        }),
+        new Input({
+          class: 'profile-input-form',
+          spanClass: 'profile-input-form__title',
+          label: 'Second name',
+          inputClass: 'profile-input-form__input',
+          inputType: 'text',
+          inputName: 'second_name',
+          inputPlaceholder: this.props.second_name,
+          readonly: 'readonly',
+        }),
+        new Input({
+          class: 'profile-input-form',
+          spanClass: 'profile-input-form__title',
+          label: 'Display name',
+          inputClass: 'profile-input-form__input',
+          inputType: 'text',
+          inputName: 'display_name',
+          inputPlaceholder: this.props.display_name ? this.props.display_name : this.props.first_name,
+          readonly: 'readonly',
+        }),
+        new Input({
+          class: 'profile-input-form',
+          spanClass: 'profile-input-form__title',
+          label: 'Phone',
+          inputClass: 'profile-input-form__input',
+          inputType: 'tel',
+          inputName: 'phone',
+          inputPlaceholder: this.props.phone,
+          readonly: 'readonly',
+        }),
+      ],
+    });
+
+    /**
+     * Другой вариант — просто заново создать всех детей. Но тогда метод должен возвращать true, чтобы новые дети отрендерились
+     *
+     * this.children.fields = userFields.map(name => {
+     *   return new ProfileField({ name, value: newProps[name] });
+     * });
+     */
+
+    /**
+     * Так как мы обновили детей, этот компонент не обязательно рендерить
+     */
+    return true;
   }
 
   render() {
     return this.compile(template, { ...this.props });
   }
 }
+const withUser = withStore((state) => ({ ...state.user }));
+export const ProfilePage = withUser(ProfilePageBase as typeof Block);

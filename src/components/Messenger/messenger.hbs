@@ -1,0 +1,34 @@
+<div class="messenger">
+    <div class="header">
+        {{{ menuButton }}}
+    </div>
+
+    <div class="menu-popup">
+        {{{ addUserButton }}}
+
+        {{{ deleteUserButton }}}
+
+        {{{ deleteChatButton }}}
+    </div>
+
+    {{{ menuPopup }}}
+
+    {{#if selectedChat }}
+        <div class="messenger__messages">
+            {{#each messages}}
+                {{{this}}}
+            {{/each}}
+        </div>
+        <div class="messenger__footer">
+            {{{message_input}}}
+            {{{button}}}
+        </div>
+    {{else}}
+        Select chat
+    {{/if}}
+
+    {{{ addUserPopup }}}
+    {{{ deleteUserPopup }}}
+    {{{ deleteChatPopup }}}
+
+</div>

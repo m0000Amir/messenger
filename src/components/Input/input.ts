@@ -9,13 +9,23 @@ interface InputFormProps {
   inputClass?: string
   inputType: string
   inputName: string
-  inputPlaceholder: string
+  inputPlaceholder?: string
+  readonly?: string
+  value?: string
   events?: { focusin: (e: Event) => void; focusout: (e: Event) => void };
 }
 
 export class Input extends Block {
   constructor(props: InputFormProps) {
     super(props);
+  }
+
+  public getName() {
+    return (this.element as HTMLInputElement).name;
+  }
+
+  public getValue() {
+    return (this.element as HTMLInputElement).value;
   }
 
   render() {

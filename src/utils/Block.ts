@@ -1,9 +1,7 @@
 import { nanoid } from 'nanoid';
 import EventBus from './EventBus';
 
-export type TProps = Record<string, any | unknown>;
-//
-export abstract class Block<Props extends Record<string, any | object> = any> {
+export class Block<Props extends Record<string, any> = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -13,7 +11,7 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
 
   public id = nanoid(6);
 
-  protected props: Record<string, unknown>;
+  protected props: Props;
 
   protected children: Record<string, Block | Block[]>;
 
@@ -21,26 +19,17 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
 
   private _element: HTMLElement | null = null;
 
-  private readonly _meta: {
-    props: Props;
-    tagName?: string;
-  };
+  /** JSDoc
+   *
+   * @returns {void}
+   * @param propsWithChildren
+   */
 
-  protected constructor(propsWithChildren: Props) {
+  constructor(propsWithChildren: Props) {
     const eventBus = new EventBus();
-
-    const { props, children } = this._getChildrenAndProps(
-      propsWithChildren || {} as Props,
-    );
-
-    this._meta = {
-      props,
-    };
+    const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
     this.children = children;
-
-    this.initChildren();
-
     this.props = this._makePropsProxy(props);
 
     this.eventBus = () => eventBus;
@@ -51,19 +40,19 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
 
   private _getChildrenAndProps(childrenAndProps: Props): {
     props: Props;
-    children: Record<string, Block | Block[]>;
+    children: Record<string, Block> | Record<string, Block[]>;
   } {
-    const props: Record<string, any> = {};
+    const props: Record<string, unknown> = {};
     const children: Record<string, Block> | Record<string, Block[]> = {};
-
-    Object.entries(childrenAndProps).map(([key, value]) => {
-      if (value instanceof Block) {
-        children[key] = value;
-      } else if (
+    Object.entries(childrenAndProps).forEach(([key, value]) => {
+      if (
         Array.isArray(value)
+        && value.length > 0
         && value.every((v) => v instanceof Block)
       ) {
-        children[key] = value;
+        children[key as string] = value;
+      } else if (value instanceof Block) {
+        children[key as string] = value;
       } else {
         props[key] = value;
       }
@@ -72,22 +61,8 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
     return { props: props as Props, children };
   }
 
-  private _removeEvents() {
-    const { events = {} } = this.props as Props & {
-      events: Record<string, () => void>;
-    };
-
-    if (!events || !this._element) {
-      return;
-    }
-
-    Object.entries(events).forEach(([event, listener]) => {
-      this._element!.removeEventListener(event, listener);
-    });
-  }
-
   private _addEvents() {
-    const { events = {} } = this.props as {
+    const { events = {} } = this.props as Props & {
       events: Record<string, () => void>;
     };
 
@@ -103,14 +78,7 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  private _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName!);
-  }
-
   private _init() {
-    this._createResources();
-
     this.init();
 
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
@@ -126,20 +94,29 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+
+    Object.values(this.children).forEach((child) => {
+      // child.dispatchComponentDidMount()
+      if (Array.isArray(child)) {
+        child.forEach((ch) => ch.dispatchComponentDidMount());
+      } else {
+        child.dispatchComponentDidMount();
+      }
+    });
   }
 
-  private _componentDidUpdate(oldProps: Props, newProps: Props) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
+  private _componentDidUpdate(oldProps?: Props, newProps?: Props): void {
+    if (this.componentDidUpdate(oldProps!, newProps!)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  protected componentDidUpdate(oldProps: Props, newProps: Props) {
-    console.log(oldProps, newProps);
+  // @ts-ignore
+  protected componentDidUpdate(oldProps?: Props, newProps?: Props) {
     return true;
   }
 
-  public setProps = (nextProps: Props) => {
+  public setProps = (nextProps: any) => {
     if (!nextProps) {
       return;
     }
@@ -152,11 +129,12 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
   }
 
   private _render() {
+    this._removeEvents();
+
     const fragment = this.render();
     const newElement = fragment.firstElementChild as HTMLElement;
 
-    if (this._element) {
-      this._removeEvents();
+    if (this._element && newElement) {
       this._element.replaceWith(newElement);
     }
 
@@ -172,68 +150,61 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
     const contextAndStubs = { ...context };
 
     Object.entries(this.children).forEach(([name, component]) => {
-      if (Array.isArray(component)) {
-        component.forEach((val) => {
-          if (!contextAndStubs[name]) {
-            contextAndStubs[name] = `<div data-id='${val.id}'></div>`;
-          } else {
-            contextAndStubs[
-              name
-            ] = `${contextAndStubs[name]}<div data-id='${val.id}'></div>`;
-          }
-        });
-        return;
-      }
-
+      // @ts-ignore
       contextAndStubs[name] = `<div data-id='${component.id}'></div>`;
+      if (Array.isArray(component)) {
+        contextAndStubs[name] = component.map(
+          (child) => `<div data-id='${child.id}'></div>`,
+        );
+      } else {
+        contextAndStubs[name] = `<div data-id='${component.id}'></div>`;
+      }
     });
+
     const html = template(contextAndStubs);
 
     const temp = document.createElement('template');
 
     temp.innerHTML = html;
 
-    Object.entries(this.children).forEach(([_, component]) => {
-      let stub;
+    const replaceStub = (component: Block) => {
+      const stub = temp.content.querySelector(`[data-id='${component.id}']`);
+
+      if (!stub) {
+        return;
+      }
+
+      component.getContent()?.append(...Array.from(stub.childNodes));
+
+      stub.replaceWith(component.getContent()!);
+    };
+
+    Object.entries(this.children).forEach(([, component]) => {
       if (Array.isArray(component)) {
-        component.forEach((val) => {
-          stub = temp.content.querySelector(`[data-id='${val.id}']`);
-          if (!stub) {
-            return;
-          }
-
-          stub.replaceWith(val.getContent()!);
-        });
+        component.forEach(replaceStub);
       } else {
-        stub = temp.content.querySelector(`[data-id='${component.id}']`);
-        if (!stub) {
-          return;
-        }
-
-        stub.replaceWith(component.getContent()!);
+        replaceStub(component);
       }
     });
 
     return temp.content;
   }
 
-  protected initChildren() {}
-
   public getContent() {
     return this.element;
   }
 
-  private _makePropsProxy(props: any) {
+  private _makePropsProxy(props: Props) {
     const self = this;
 
     return new Proxy(props, {
-      get(target, prop) {
+      get(target, prop: string) {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop, value) {
+      set(target, prop: string, value) {
         const oldTarget = { ...target };
-        target[prop] = value;
+        target[prop as keyof Props] = value;
 
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
@@ -244,8 +215,11 @@ export abstract class Block<Props extends Record<string, any | object> = any> {
     });
   }
 
-  private _createDocumentElement(tagName: string) {
-    return document.createElement(tagName);
+  private _removeEvents() {
+    const { events = {} } = this.props as Props & {
+      events: Record<string, () => void>;
+    };
+    Object.keys(events).forEach((eventName) => this._element?.removeEventListener(eventName, events[eventName]));
   }
 
   public show() {

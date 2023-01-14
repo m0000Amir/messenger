@@ -5,9 +5,12 @@
 https://practicum.yandex.ru/
 ___
 # Описание
-На данный момент в проект внедрен Typescript.
-Добавлен компонентный подход с использованием Event Bus.
-Организован сбор данных из формы. Добавлена валидация.
+На данный момент в проект внедрен роутинг. Добавлены API c доступом к 
+`https://ya-praktikum.tech/api/v2/`. 
+
+Добавлену авторизация, работа с информацией пользоваетеля и работа с чатами.
+Подключен WebSocket для работы с real-time сообщениями.
+
 Для сборки используется *Express*.
 
 
@@ -28,7 +31,7 @@ https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=1%3
 ---
 
 # Ссылка на pull-request:
-https://github.com/m0000Amir/middle.messenger.praktikum.yandex/pull/2
+https://github.com/m0000Amir/middle.messenger.praktikum.yandex/pull/3
 
 ---
 
