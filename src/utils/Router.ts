@@ -47,8 +47,11 @@ class Route {
 
 class Router {
   private static __instance: Router;
+
   private routes: Route[] = [];
+
   private currentRoute: Route | null = null;
+
   private history = window.history;
 
   constructor(private readonly rootQuery: string) {
@@ -76,6 +79,11 @@ class Router {
     };
 
     this._onRoute(window.location.pathname);
+  }
+
+  public reset() {
+    this.routes = [];
+    this.currentRoute = null;
   }
 
   private _onRoute(pathname: string) {

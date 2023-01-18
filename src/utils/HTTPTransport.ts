@@ -40,7 +40,11 @@ export default class HTTPTransport {
   }
 
   get: HTTPMethod = (url, options = {}) => (
-    this.request(this.endpoint + url, { ...options, method: Method.Get }, options.timeout)
+    this.request(
+      this.endpoint + url,
+      { ...options, method: Method.Get },
+      options.timeout,
+    )
   );
 
   post: HTTPMethod = (url, options = {}) => (
