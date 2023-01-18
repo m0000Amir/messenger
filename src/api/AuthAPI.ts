@@ -1,5 +1,6 @@
 import BaseAPI from './BaseAPI';
 import { SigninData, SignupData, User } from '../types/types';
+import { Options } from '../utils/HTTPTransport';
 
 export class AuthAPI extends BaseAPI {
   constructor() {
@@ -7,11 +8,11 @@ export class AuthAPI extends BaseAPI {
   }
 
   public signin(signinData: SigninData) {
-    return this.http.post('/signin', { data: signinData });
+    return this.http.post('/signin', { data: signinData } as Options);
   }
 
   public signup(signupData: SignupData) { // create
-    return this.http.post('/signup', { data: signupData });
+    return this.http.post('/signup', { data: signupData } as Options);
   }
 
   public read(): Promise<User> { // getUser

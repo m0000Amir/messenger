@@ -1,8 +1,7 @@
 import { set } from './helpers';
 import EventBus from './EventBus';
 import { Block } from './Block';
-import { ChatInfo, User } from '../types/types';
-import { Message } from '../controllers/MessagesController';
+import { ChatInfo, User, Message } from '../types/types';
 
 export enum StoreEvents {
   Updated = 'updated'
@@ -32,8 +31,7 @@ export class Store extends EventBus {
 const store = new Store();
 
 export function withStore<SP>(mapStateToProps: (state: State) => SP) {
-  return function wrap<P>(Component: typeof Block<SP & P>){
-
+  return function wrap<P>(Component: typeof Block) {
     return class WithStore extends Component {
       constructor(props: Omit<P, keyof SP>) {
         let previousState = mapStateToProps(store.getState());

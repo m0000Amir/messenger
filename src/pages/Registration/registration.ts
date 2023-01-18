@@ -5,7 +5,7 @@ import template from './registration.hbs';
 import './registration.less';
 import Link from '../../components/Link';
 import Form from '../../components/Form';
-import { focusin, focusout, isValid, submit } from '../../utils/events';
+import { focusin, focusout, isValid } from '../../utils/events';
 import { Routes, SignupData } from '../../types/types';
 import AuthController from '../../controllers/AuthControllers';
 
@@ -133,6 +133,7 @@ export class RegistrationPage extends Block {
     const signUpData = {};
     if (isValid(inputs)) {
       Array.from(inputs).forEach((input) => {
+        // @ts-ignore
         signUpData[input.name] = input.value;
       });
       AuthController.signup(signUpData as SignupData);
