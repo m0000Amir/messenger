@@ -1,20 +1,19 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
-
-const isDev = process.env.NODE_ENV === "development";
+// webpack.config.js
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { EnvironmentPlugin } = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.ts",
-  devtool: "inline-source-map",
+  mode: 'development',
+  entry: './src/index.ts',
+  devtool: 'inline-source-map',
   output: {
-    path: path.resolve(__dirname, "./dist"),
-    filename: isDev ? "[name].[contenthash].js" : "[name].js",
+    path: path.resolve(__dirname, './dist'),
+    filename: 'project-name.bundle.js',
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".json"],
+    extensions: ['.ts', '.js', '.json'],
   },
   devServer: {
     compress: true,
@@ -23,57 +22,55 @@ module.exports = {
     open: true,
     hot: true,
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+    }),
+    new EnvironmentPlugin({
+      API_ENDPOINT: 'https://ya-praktikum.tech/api/v2',
+      WS_CHAT_ENDPOINT: 'wss://ya-praktikum.tech/ws/chats',
+    }),
+  ],
   module: {
     rules: [
       {
         test: /\.ts?$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.hbs$/,
-        use: ["handlebars-loader"],
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: path.resolve(__dirname, 'tsconfig.json'),
+            },
+          },
+        ],
         exclude: /(node_modules)/,
       },
       {
         test: /\.less$/i,
         use: [
-          // compiles Less to CSS
-          "style-loader",
-          "css-loader",
-          "less-loader",
+          'style-loader',
+          'css-loader',
+          'less-loader',
         ],
       },
-      // images
-      { test: /\.svg$/, type: "asset" },
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: "asset/resource",
+        test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
-            loader: "file-loader",
-            options: {
-              name: "[name].[ext]",
-              useRelativePath: true,
-              esModule: false,
-            },
+            loader: 'file-loader',
           },
         ],
       },
-      // fonts
       {
-        test: /\.(woff(2)?|eot|ttf|otf)$/,
-        type: "asset/inline",
+        test: /\.hbs$/,
+        use: ['handlebars-loader'],
+        exclude: /(node_modules)/,
+      },
+      {
+        test: /\.svg$/,
+        type: 'asset',
       },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-    }),
-    // new MiniCssExtractPlugin({
-    //   filename: isDev ? "[name].[contenthash].less" : "[name].less",
-    // }),
-    // new FaviconsWebpackPlugin("./static/favicon.ico"),
-  ],
 };

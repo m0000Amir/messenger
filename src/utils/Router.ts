@@ -37,7 +37,7 @@ class Route {
 
   render() {
     if (!this.block) {
-      debugger
+      // debugger
       this.block = new this.BlockClass({});
 
       render(this.query, this.block);

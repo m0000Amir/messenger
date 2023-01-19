@@ -14,7 +14,7 @@ export class MessengerPage extends Block {
   protected init() {
     this.children.chatsList = new ChatsList({ isLoaded: false });
 
-    this.children.messenger = new Messenger({});
+    this.children.messengerList = new Messenger({});
 
     // @ts-ignore
     ChatsController.fetchChats().finally(() => {
@@ -25,6 +25,7 @@ export class MessengerPage extends Block {
   }
 
   protected render(): DocumentFragment {
+    // debugger
     return this.compile(template, {});
   }
 }
