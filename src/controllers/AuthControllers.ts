@@ -22,9 +22,9 @@ export class AuthController {
 
   async signin(signData: SigninData) {
     try {
-      // debugger
-      await this.api.signin(signData);
 
+      await this.api.signin(signData);
+      // debugger
       await this.fetchUser();
 
       router.go(Routes.Chat);

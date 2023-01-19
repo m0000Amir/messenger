@@ -37,6 +37,7 @@ class Route {
 
   render() {
     if (!this.block) {
+      debugger
       this.block = new this.BlockClass({});
 
       render(this.query, this.block);
@@ -104,7 +105,7 @@ class Router {
 
   public go(pathname: string) {
     this.history.pushState({}, '', pathname);
-
+    // debugger
     this._onRoute(pathname);
   }
 
