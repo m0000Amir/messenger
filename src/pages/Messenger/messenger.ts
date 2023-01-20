@@ -7,7 +7,6 @@ import './messenger.less';
 
 export class MessengerPage extends Block {
   constructor() {
-    // debugger
     super({});
   }
 
@@ -25,7 +24,6 @@ export class MessengerPage extends Block {
   }
 
   protected render(): DocumentFragment {
-    // debugger
     return this.compile(template, {});
   }
 }

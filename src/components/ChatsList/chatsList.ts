@@ -22,7 +22,6 @@ class ChatsListBase extends Block<ChatsListProps> {
     super(props);
   }
 
-  // chat-page__dialogues_search
   protected init() {
     this.children.search = new Form({
       inputs: [
@@ -86,7 +85,6 @@ class ChatsListBase extends Block<ChatsListProps> {
 
   protected componentDidUpdate(newProps: ChatsListProps): boolean {
     this.children.chats = this.createChats(newProps);
-    // debugger
 
     return true;
   }
