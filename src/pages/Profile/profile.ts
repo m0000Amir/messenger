@@ -17,18 +17,10 @@ import UserController from '../../controllers/UserController';
 interface ProfileProps extends User {}
 
 export class ProfilePageBase extends Block<ProfileProps> {
-  // constructor(props: ProfileProps) {
-  //   super(props);
-  // }
 
   async componentDidMount() {
     await AuthController.fetchUser();
   }
-
-  // public setProps = (nextProps: any) => {
-  //   debugger
-  //   super.setProps(nextProps);
-  // };
 
   init() {
     console.log(this.props);
@@ -118,11 +110,6 @@ export class ProfilePageBase extends Block<ProfileProps> {
       href: Routes.ChangePassword,
       label: 'Change Password',
     });
-    // this.children.exit = new Link({
-    //   class: 'profile-button__text-exit',
-    //   href: '/',
-    //   label: 'Exit',
-    // });
     this.children.exit = new Button({
       label: 'Exit',
       class: 'button-exit',
@@ -151,9 +138,7 @@ export class ProfilePageBase extends Block<ProfileProps> {
             e.preventDefault();
             const formData = new FormData();
             const input: any = document.querySelector('#avatar');
-
             formData.append('avatar', input?.files[0]);
-            // debugger
             UserController.updateAvatar(formData);
             (this.children.popup as Popup).hide();
           },
@@ -174,7 +159,7 @@ export class ProfilePageBase extends Block<ProfileProps> {
     newProps: ProfileProps,
   ): boolean {
     /**
-     * Обновляем детей
+     * Update children
      */
     (this.children.img as Avatar).setProps({
       srcImg: this.props.avatar
@@ -246,18 +231,6 @@ export class ProfilePageBase extends Block<ProfileProps> {
         }),
       ],
     });
-
-    /**
-     * Другой вариант — просто заново создать всех детей. Но тогда метод должен возвращать true, чтобы новые дети отрендерились
-     *
-     * this.children.fields = userFields.map(name => {
-     *   return new ProfileField({ name, value: newProps[name] });
-     * });
-     */
-
-    /**
-     * Так как мы обновили детей, этот компонент не обязательно рендерить
-     */
     return true;
   }
 

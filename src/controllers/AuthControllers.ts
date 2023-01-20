@@ -22,14 +22,10 @@ export class AuthController {
 
   async signin(signData: SigninData) {
     try {
-      debugger
       await this.api.signin(signData);
-
       await this.fetchUser();
-
       router.go(Routes.Chat);
     } catch (e) {
-      // alert('Error during signing in');
       console.error(e);
     }
   }
@@ -37,8 +33,6 @@ export class AuthController {
   async logout() {
     try {
       await this.api.logout();
-
-      // todo:  add MessageController close All
       router.go('/');
     } catch (e: any) {
       console.error(e.message);

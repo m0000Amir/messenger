@@ -4,7 +4,7 @@ import template from './link.hbs';
 import './link.less';
 
 interface LinkProps extends PropsWithRouter {
-  class: string;
+  class?: string;
   href: string;
   label: string;
   events?: {
@@ -12,7 +12,7 @@ interface LinkProps extends PropsWithRouter {
   };
 }
 
-class BaseLink extends Block<LinkProps> {
+export class BaseLink extends Block<LinkProps> {
   constructor(props: LinkProps) {
     super({
       ...props,

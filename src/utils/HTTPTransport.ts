@@ -1,6 +1,7 @@
-type Options = {
+export type Options = {
   method: Method;
-  data?: any;
+  data?: unknown;
+  timeout?: any;
 };
 
 export enum Method {
@@ -28,7 +29,7 @@ export function queryStringify(data: Record<string, any>): string {
   );
 }
 
-type HTTPMethod<Response> = (url: string, options?: Options) => Promise<Response>;
+type HTTPMethod = (url: string, options?: Options) => Promise<any>;
 
 export default class HTTPTransport {
   static API_URL = 'https://ya-praktikum.tech/api/v2';
@@ -39,22 +40,33 @@ export default class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  get: HTTPMethod = (url, options = {}) => (
-    this.request(this.endpoint + url, { ...options, method: Method.Get }, options.timeout)
+  get: HTTPMethod = (url, options = {} as Options) => (
+    this.request(
+      this.endpoint + url,
+      { ...options, method: Method.Get },
+      options.timeout,
+    )
   );
 
-  post: HTTPMethod = (url, options = {}) => (
+  post: HTTPMethod = (url, options = {} as Options) => (
     this.request(this.endpoint + url, {
       ...options,
       method: Method.Post,
     }, options.timeout)
   );
 
-  put: HTTPMethod = (url, options = {}) => (
+  put: HTTPMethod = (url, options = {} as Options) => (
     this.request(this.endpoint + url, { ...options, method: Method.Put }, options.timeout)
   );
 
-  delete: HTTPMethod = (url, options = {}) => (
+  // public put<Response = void>(path: string, data: unknown): Promise<Response> {
+  //   return this.request<Response>(this.endpoint + path, {
+  //     method: Method.Put,
+  //     data,
+  //   });
+  // }
+
+  delete: HTTPMethod = (url, options = {} as Options) => (
     this.request(this.endpoint + url, { ...options, method: Method.Delete }, options.timeout)
   );
 

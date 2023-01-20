@@ -38,7 +38,6 @@ class Route {
   render() {
     if (!this.block) {
       this.block = new this.BlockClass({});
-
       render(this.query, this.block);
       return;
     }
@@ -47,8 +46,11 @@ class Route {
 
 class Router {
   private static __instance: Router;
+
   private routes: Route[] = [];
+
   private currentRoute: Route | null = null;
+
   private history = window.history;
 
   constructor(private readonly rootQuery: string) {
@@ -78,6 +80,11 @@ class Router {
     this._onRoute(window.location.pathname);
   }
 
+  public reset() {
+    this.routes = [];
+    this.currentRoute = null;
+  }
+
   private _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
 
@@ -96,7 +103,6 @@ class Router {
 
   public go(pathname: string) {
     this.history.pushState({}, '', pathname);
-
     this._onRoute(pathname);
   }
 

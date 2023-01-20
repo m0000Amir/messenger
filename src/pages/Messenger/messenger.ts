@@ -7,14 +7,13 @@ import './messenger.less';
 
 export class MessengerPage extends Block {
   constructor() {
-    // debugger
     super({});
   }
 
   protected init() {
     this.children.chatsList = new ChatsList({ isLoaded: false });
 
-    this.children.messenger = new Messenger({});
+    this.children.messengerList = new Messenger({});
 
     // @ts-ignore
     ChatsController.fetchChats().finally(() => {

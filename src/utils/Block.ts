@@ -230,3 +230,5 @@ export class Block<Props extends Record<string, any> = any> {
     this.getContent()!.style.display = 'none';
   }
 }
+
+export default Block;

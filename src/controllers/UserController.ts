@@ -11,7 +11,6 @@ export class UserController {
   async updateUser(data: UpdateUserData) {
     try {
       await this.api.updateUser(data);
-      // todo: check it
       await AuthController.fetchUser();
     } catch (e: any) {
       console.error(e);
@@ -28,7 +27,6 @@ export class UserController {
 
   async updateAvatar(data: FormData) {
     try {
-      // debugger;
       await this.api.updateAvatar(data);
       await AuthController.fetchUser();
     } catch (e) {

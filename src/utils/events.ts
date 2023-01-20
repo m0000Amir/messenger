@@ -83,16 +83,15 @@ const focusout = (event: Event): void => {
   patternValidation(event);
 };
 
-const isValid = (inputs: any): boolean => {
-  return Array.from(inputs).every((element: Element) => {
-    const inputElement = element as HTMLInputElement;
-    const { regExp } = expression[inputElement.name];
-    if (!regExp.test(inputElement.value)) {
-      inputElement.value = '';
-    }
-    return regExp.test(inputElement.value);
-  });
-};
+// @ts-ignore
+const isValid = (inputs: any): boolean => Array.from(inputs).every((element: Element) => {
+  const inputElement = element as HTMLInputElement;
+  const { regExp } = expression[inputElement.name];
+  if (!regExp.test(inputElement.value)) {
+    inputElement.value = '';
+  }
+  return regExp.test(inputElement.value);
+});
 
 const submit = (event: Event): void => {
   event.preventDefault();
