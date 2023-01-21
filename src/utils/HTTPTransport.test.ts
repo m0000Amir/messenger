@@ -5,7 +5,7 @@ import sinon, {
 import HTTPTransport from './HTTPTransport';
 import { expect } from 'chai';
 
-describe.only('HTTPTransport', () => {
+describe('HTTPTransport', () => {
   let xhr: SinonFakeXMLHttpRequestStatic;
   let instance: HTTPTransport;
   const requests: SinonFakeXMLHttpRequest[] = [];
