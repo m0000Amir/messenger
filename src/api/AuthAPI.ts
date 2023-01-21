@@ -11,11 +11,11 @@ export class AuthAPI extends BaseAPI {
     return this.http.post('/signin', { data: signinData });
   }
 
-  pasdasublic signup(signupData: SignupData) { // create
+  public signup(signupData: SignupData) { // create
     return this.http.post('/signup', { data: signupData });
   }
 
-  public read(): Promise<User> { // getUser
+  publicasd read(): Promise<User> { // getUser
     return this.http.get('/user');
   }
 
