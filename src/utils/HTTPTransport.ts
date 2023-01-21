@@ -1,5 +1,5 @@
 export type Options = {
-  method: Method;
+  method?: Method;
   data?: unknown;
   timeout?: any;
 };
@@ -40,7 +40,7 @@ export default class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  get: HTTPMethod = (url, options = {} as Options) => (
+  get: HTTPMethod = (url, options = {}) => (
     this.request(
       this.endpoint + url,
       { ...options, method: Method.Get },
@@ -48,14 +48,14 @@ export default class HTTPTransport {
     )
   );
 
-  post: HTTPMethod = (url, options = {} as Options) => (
+  post: HTTPMethod = (url, options = {}) => (
     this.request(this.endpoint + url, {
       ...options,
       method: Method.Post,
     }, options.timeout)
   );
 
-  put: HTTPMethod = (url, options = {} as Options) => (
+  put: HTTPMethod = (url, options = {}) => (
     this.request(this.endpoint + url, { ...options, method: Method.Put }, options.timeout)
   );
 
@@ -66,7 +66,7 @@ export default class HTTPTransport {
   //   });
   // }
 
-  delete: HTTPMethod = (url, options = {} as Options) => (
+  delete: HTTPMethod = (url, options = {}) => (
     this.request(this.endpoint + url, { ...options, method: Method.Delete }, options.timeout)
   );
 
@@ -112,6 +112,7 @@ export default class HTTPTransport {
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
+      // @ts-ignore
       xhr.open(method, resultUrl);
 
       xhr.onreadystatechange = () => {

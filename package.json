@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@anikin/parcel-transformer-handlebars": "^1.0.2",
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "@parcel/transformer-less": "2.8.0",
     "@types/chai": "4.3.4",
@@ -54,12 +54,11 @@
     "start": "npm run build && node ./server.js",
     "clear": "rimraf ./dist",
     "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'",
-    "lint": "echo 'Eslint check' && eslint '**/*.ts' && echo 'TypeScript check' && tsc --noEmit && echo 'StyleLint check' && stylelint '**/*.less'"
+    "lint": "node_modules/.bin/eslint . & stylelint **/*.less"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm-run-all test lint:all",
-      "pre-push": "npm run other command"
+      "pre-commit": "npm-run-all test lint:all"
     }
   },
   "repository": {

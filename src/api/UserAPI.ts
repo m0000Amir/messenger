@@ -8,15 +8,15 @@ export class UserAPI extends BaseAPI {
   }
 
   updateUser(data: UpdateUserData) {
-    return this.http.put('/profile', { data } as Options);
+    return this.http.put('/profile', { data });
   }
 
   updateAvatar(data: FormData) {
-    return this.http.put('/profile/avatar', { data } as Options);
+    return this.http.put('/profile/avatar', { data });
   }
 
   updatePassword(data: UpdatePassword) {
-    return this.http.put('/password', { data } as Options);
+    return this.http.put('/password', { data });
   }
 
   create = undefined;

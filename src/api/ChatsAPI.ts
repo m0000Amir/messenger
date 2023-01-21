@@ -8,11 +8,11 @@ export class ChatsAPI extends BaseAPI {
   }
 
   create(title: string) {
-    return this.http.post('/', { data: { title } } as Options);
+    return this.http.post('/', { data: { title } });
   }
 
   delete(id: number): Promise<unknown> {
-    return this.http.delete('/', { data: { chatId: id } } as Options);
+    return this.http.delete('/', { data: { chatId: id } });
   }
 
   read(): Promise<ChatInfo[]> {
@@ -24,11 +24,11 @@ export class ChatsAPI extends BaseAPI {
   }
 
   addUsers(id: number, users: number[]): Promise<unknown> {
-    return this.http.put('/users', { data: { users, chatId: id } } as Options);
+    return this.http.put('/users', { data: { users, chatId: id } });
   }
 
   deleteUsers(id: number, users: number[]): Promise<unknown> {
-    return this.http.delete('/users', { data: { users, chatId: id } } as Options);
+    return this.http.delete('/users', { data: { users, chatId: id } });
   }
 
   async getToken(id: number): Promise<string> {
