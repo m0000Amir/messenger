@@ -40,6 +40,6 @@ describe('HTTPTransport', () => {
 
     const [request] = requests;
 
-    expect(request.method).to.eq('Pasdasd');
+    expect(request.method).to.eq('Pasdsasd');
   });
 });
