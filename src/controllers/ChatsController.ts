@@ -37,7 +37,6 @@ class ChatsController {
     await this.fetchChats();
   }
 
-
   async delete(id: number) {
     await this.api.delete(id);
 
@@ -54,6 +53,5 @@ class ChatsController {
 }
 
 const controller = new ChatsController();
-
 
 export default controller;

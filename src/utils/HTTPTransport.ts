@@ -124,12 +124,12 @@ export default class HTTPTransport {
         }
       };
 
-      // xhr.onabort = reject;
-      // xhr.onerror = reject;
+      xhr.onabort = reject;
+      xhr.onerror = reject;
       // xhr.ontimeout = reject;
-
-      xhr.onabort = () => reject({ reason: 'abort' });
-      xhr.onerror = () => reject({ reason: 'network error' });
+      //
+      // xhr.onabort = () => reject({ reason: 'abort' });
+      // xhr.onerror = () => reject({ reason: 'network error' });
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
 

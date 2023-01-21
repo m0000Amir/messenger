@@ -17,7 +17,6 @@ import UserController from '../../controllers/UserController';
 interface ProfileProps extends User {}
 
 export class ProfilePageBase extends Block<ProfileProps> {
-
   async componentDidMount() {
     await AuthController.fetchUser();
   }

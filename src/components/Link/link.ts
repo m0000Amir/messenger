@@ -31,7 +31,6 @@ export class BaseLink extends Block<LinkProps> {
   }
 }
 
-
 export const Link = withRouter(BaseLink);
 
 // import { Block } from '../../utils/Block';

@@ -23,8 +23,8 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   let isProtectedRoute = true;
 
+  // eslint-disable-next-line default-case
   switch (window.location.pathname) {
-
     case Routes.Index:
     case Routes.Registration:
       isProtectedRoute = false;

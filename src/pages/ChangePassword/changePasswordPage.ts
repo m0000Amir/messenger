@@ -5,7 +5,6 @@ import Button from '../../components/Button';
 import './changePassword.less';
 import Form from '../../components/Form';
 import { focusin, focusout, isValid } from '../../utils/events';
-import router from '../../utils/Router';
 import { Routes, UpdatePassword } from '../../types/types';
 import UserController from '../../controllers/UserController';
 import Router from '../../utils/Router';
@@ -88,7 +87,7 @@ export class ChangePasswordPage extends Block {
         updatePassword[input.name] = input.value;
       });
       UserController.updatePassword(updatePassword as UpdatePassword);
-      router.go(Routes.Profile);
+      Router.go(Routes.Profile);
     }
   }
 

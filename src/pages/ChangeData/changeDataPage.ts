@@ -5,7 +5,6 @@ import Button from '../../components/Button';
 import './changeData.less';
 import Form from '../../components/Form';
 import { focusin, focusout, isValid } from '../../utils/events';
-import router from '../../utils/Router';
 import { Routes, UpdateUserData } from '../../types/types';
 import UserController from '../../controllers/UserController';
 import Router from '../../utils/Router';
@@ -128,7 +127,7 @@ export class ChangeDataPage extends Block {
         updateUserData[input.name] = input.value;
       });
       UserController.updateUser(updateUserData as UpdateUserData);
-      router.go(Routes.Profile);
+      Router.go(Routes.Profile);
     }
   }
 

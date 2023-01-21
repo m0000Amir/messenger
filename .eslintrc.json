@@ -1,36 +1,46 @@
 {
-    "extends": "airbnb",
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
-    "rules": {
-        "@typescript-eslint/no-unused-vars": "off",
-        "eslint-disable-next-line no-constructor-return": 0,
-        "max-classes-per-file": [
-            "error",
-            { "ignoreExpressions": true, "max": 2 }
-        ],
-
-        "max-len": [1, 250],
-        "max-params": [2, 3],
-
-        "no-unused-vars": "off",
-        "no-restricted-exports": "off",
-        "no-undef": "off",
-        "no-param-reassign": "off",
-        "no-useless-constructor": "off",
-        "no-underscore-dangle": "off",
-        "no-use-before-define": "off",
-        "no-useless-escape": "off",
-        "no-shadow": "off",
-
-        "import/extensions": [1, "never"],
-        "import/prefer-default-export": "off",
-        "import/no-unresolved": "off",
-        "import/no-extraneous-dependencies": "off",
-        "import/order": "off",
-        "no-trailing-spaces": "off",
-        "class-methods-use-this": "off",
-        "array-callback-return": "off",
-        "no-console": "off"
+  "extends": "airbnb",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "detect"
     }
+  },
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "off",
+    "max-classes-per-file": [
+        "error",
+        { "ignoreExpressions": true, "max": 2 }
+    ],
+
+    "max-len": [1, 250],
+    "max-params": [2, 3],
+
+    "no-unused-vars": "off",
+    "no-restricted-exports": "off",
+    "no-undef": "off",
+    "no-param-reassign": "off",
+    "no-useless-constructor": "off",
+    "no-underscore-dangle": "off",
+    "no-use-before-define": "off",
+    "no-useless-escape": "off",
+    "no-shadow": "off",
+
+    "import/extensions": [1, "never"],
+    "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/order": "off",
+    "no-trailing-spaces": "off",
+    "class-methods-use-this": "off",
+    "array-callback-return": "off",
+    "no-console": "off",
+    "no-empty-function": "off",
+    "no-constructor-return": "off",
+    "no-restricted-syntax": "off",
+    "no-prototype-builtins": "off",
+    "no-continue": "off",
+    "eslint-plugin-react": "off"
+  }
 }
