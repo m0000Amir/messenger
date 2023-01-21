@@ -1,4 +1,3 @@
-
 import BaseAPI from './BaseAPI';
 import { SigninData, SignupData, User } from '../types/types';
 
