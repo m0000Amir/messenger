@@ -11,7 +11,7 @@ export class AuthAPI extends BaseAPI {
     return this.http.post('/signin', { data: signinData });
   }
 
-  public signup(signupData: SignupData) { // create
+  pasdasublic signup(signupData: SignupData) { // create
     return this.http.post('/signup', { data: signupData });
   }
 

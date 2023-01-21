@@ -1,5 +1,6 @@
 {
   "extends": "stylelint-config-recommended-less",
+  "customSyntax": "postcss-less",
   "rules": {
     "color-hex-case": "lower"
   },
