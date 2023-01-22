@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "^1.0.2",
+    "@anikin/parcel-transformer-handlebars": "1.0.2",
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "@parcel/transformer-less": "2.8.0",
     "@types/chai": "4.3.4",
@@ -83,5 +83,9 @@
   "homepage": "https://github.com/m0000Amir/middle.messennpger.praktikum.yandex#readme",
   "dependencies": {
     "express": "4.18.2"
+  },
+  "engines" : {
+    "npm" : ">=8.0.0 <9.0.0",
+    "node" : ">=16.0.0 <17.0.0"
   }
 }
