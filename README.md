@@ -10,8 +10,7 @@
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
 
-# Учебный проект. 
-## Разработка мессенджера в рамках курса от Яндекс Практикум (ЯП)
+# Мессенджер
 https://practicum.yandex.ru/
 ___
 # Описание
@@ -36,15 +35,8 @@ ___
 
 ---
 # Макет
-В качестве макета проекта использовался прототип от ЯП:
 https://www.figma.com/file/jF5fFFzgGOxQeB4CmKWTiE/Chat_external_link?node-id=1%3A515&t=BD5I5dyIdvEpq6kM-0
 
----
-
-# Ссылка на pull-request:
-https://github.com/m0000Amir/middle.messenger.praktikum.yandex/pull/4
-
----
 
 # Ссылка на проект
 
